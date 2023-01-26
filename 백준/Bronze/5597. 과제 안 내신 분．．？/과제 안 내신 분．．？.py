@@ -1,8 +1,5 @@
-lines = [0]*31
-input_lines = [int(input()) for _ in range(28)]
-for i in range(28):
-    lines[input_lines[i]] = 1
-    
-for i in range(1, 31):
-    if lines[i] == 0:
-        print(i)
+submitted = set(int(input()) for _ in range(28))
+not_submitted = set(range(1, 31)) - submitted
+not_submitted = sorted(list(not_submitted))
+print(not_submitted[0])
+print(not_submitted[1])
