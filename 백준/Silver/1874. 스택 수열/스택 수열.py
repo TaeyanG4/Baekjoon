@@ -1,19 +1,23 @@
-n = int(input())
-seq = [int(input()) for _ in range(n)]
+import sys
+input = sys.stdin.readline
 
-stack = []
-result = []
 
-for i in range(1, n+1):
-    stack.append(i)
-    result.append("+")
-    while stack and stack[-1] == seq[0]:
-        stack.pop()
-        result.append("-")
-        seq.pop(0)
+def sol(seq):
+    i = 1
+    ans = []
+    stack = []
+    for num in seq:
+        while i <= num:
+            stack.append(i)
+            ans.append('+')
+            i += 1
 
-if seq:
-    print("NO")
-else:
-    for op in result:
-        print(op)
+        if stack.pop() != num: return "NO"
+        ans.append('-')
+    return '\n'.join(ans)
+
+
+if __name__ == "__main__":
+    n = int(input())
+    seq = [int(input()) for _ in range(n)]
+    print(sol(seq))
