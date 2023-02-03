@@ -43,3 +43,10 @@ if __name__ == '__main__':
         
     # Output
     print(sol(n))
+    
+# 다른방법
+# for i in range(1, 11):
+#    for cb in combinations(range(0, 10), i):
+#        cb = list(cb)
+#        cb.sort(reverse=True)
+#        nums.append(int("".join(map(str,cb))))
