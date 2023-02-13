@@ -13,10 +13,9 @@ from heapq import *
 #################################
 
 def sol(k, a, b):
-    start = (a+k-1) // k*k
-    end = b // k*k
-    cnt = (end-start) // k+1
-    return cnt
+    start = (a-1) // k
+    end = b // k
+    return end-start
 
 if __name__ == '__main__':
     input = sys.stdin.readline
