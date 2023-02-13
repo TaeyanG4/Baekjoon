@@ -13,11 +13,9 @@ from heapq import *
 #################################
 
 def sol(k, a, b):
-    start = a + (k - a % k) % k
-    end = b - b % k
-
-    cnt = (end - start) // k + 1
-    
+    start = (a+k-1) // k*k
+    end = b // k*k
+    cnt = (end-start) // k+1
     return cnt
 
 if __name__ == '__main__':
