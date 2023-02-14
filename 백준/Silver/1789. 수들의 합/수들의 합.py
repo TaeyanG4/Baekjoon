@@ -14,16 +14,11 @@ from heapq import *
 #################################
 
 def sol(s):
-    if s == 1 or s == 2:
-        return 1
-    elif s == 3:
-        return 2
-    
-    sum_value = 0
-    for i in range(0, s):
-        sum_value += i
-        if sum_value > s:
-            return i-1
+    i = 1
+    while i*(i+1)/2 <= s:
+        i += 1
+    return i-1
+            
 
 if __name__ == '__main__':
     input = sys.stdin.readline
