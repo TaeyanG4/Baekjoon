@@ -1,3 +1,5 @@
+import random
+
 # 밀러-라빈 소수 판별법
 def miller_rabin(n, val=5):
     if n == 2 or n == 3:
@@ -49,7 +51,7 @@ def solution(n, k):
     numbers = [x for x in numbers if x != '']
     
     # 소수 판별
-    if len(numbers) > 10000:
+    if len(numbers) <= 1:
         for sosu in numbers:
             if miller_rabin(int(sosu)):
                     cnt += 1
