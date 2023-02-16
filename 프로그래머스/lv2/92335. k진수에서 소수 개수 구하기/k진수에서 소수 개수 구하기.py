@@ -1,24 +1,25 @@
-# n을 k진법으로 나타낸 문자열 반환
-def conv(n, k):
-    s = ''
-    while n:
-        s += str(n%k)
-        n //= k
-    return s[::-1]
+def isitPrime(k):
+    if k==2 or k==3: return True
+    if k%2==0 or k<2: return False
+    for i in range(3, int(k**0.5)+1, 2):
+        if k%i==0:
+            return False
 
-# n이 소수인지 판정
-def isprime(n):
-    if n <= 1: return False
-    i = 2
-    while i*i <= n:
-        if n%i == 0: return False
-        i += 1
     return True
 
 def solution(n, k):
-    s = conv(n,k)
-    cnt = 0
-    for num in s.split('0'):
-        if not num: continue # 빈 문자열에 대한 예외처리
-        if isprime(int(num)): cnt += 1
-    return cnt
+    answer = 0
+    num_str = ""
+
+    while n > 0:
+        num_str = str(n%k) + num_str
+        n = n//k
+
+
+    arr = num_str.split('0')
+    for i in arr:
+        if i != '':
+            if isitPrime(int(i)):
+                answer+=1
+
+    return answer
