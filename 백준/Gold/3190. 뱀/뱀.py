@@ -22,7 +22,7 @@ def turn(d, way):
     else:
         return (d+1) % 4
 
-def sol(graph,k,apples,l,dic):
+def sol(graph,apples,dic):
     
     # 사과 먹고싶다...
     for x, y in apples:
@@ -94,5 +94,4 @@ if __name__ == '__main__':
         dic.update({int(inp[0]): inp[1]})
         
     # Output
-    print(sol(graph,k,apples,l,dic))
-    
+    print(sol(graph,apples,dic))
