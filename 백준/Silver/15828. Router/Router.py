@@ -21,12 +21,12 @@ def sol(buffer):
         v = int(input())
         if v == -1:
             break
-        if v is 0:
+        if v == 0:
             ans.popleft()
-        elif len(ans) <= buffer and v is not -1:
+        elif len(ans) < buffer and v != -1:
             ans.append(v)
     
-    if len(ans) is 0:
+    if len(ans) == 0:
         return "empty"
     else:
         return list(ans)
