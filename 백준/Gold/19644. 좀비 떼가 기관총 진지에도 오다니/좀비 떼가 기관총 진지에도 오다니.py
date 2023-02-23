@@ -15,10 +15,8 @@ from heapq import *
 #################################
 
 def sol(l, ran, damage, boom, zombie):
-    dq = deque()
     psum = [0] * (l+1)
-    
-    for i in range(1, l+1):
+    for i in range(1, l+1): 
         now = psum[i-1] - psum[max(0,i-ran)]
         if zombie[i] <= now + damage:
             psum[i] = psum[i-1] + damage
