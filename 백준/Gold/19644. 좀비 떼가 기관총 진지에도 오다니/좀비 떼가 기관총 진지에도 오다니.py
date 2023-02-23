@@ -15,18 +15,18 @@ from heapq import *
 #################################
 
 def sol(l, ran, damage, boom, zombie):
-    psum = [0] * (l+1)
-    for i in range(1, l+1): 
-        now = psum[i-1] - psum[max(0,i-ran)]
-        if zombie[i] <= now + damage:
-            psum[i] = psum[i-1] + damage
-        else:
-            if boom:
-                boom -= 1
-                psum[i] = psum[i-1]
-            else:
-                return "NO"
-    return "YES"
+    psum = [0] * (l+1) # psum = 누적합
+    for i in range(1, l+1): # i = 좀비의 위치
+        now = psum[i-1] - psum[max(0,i-ran)] # now = 현재 위치까지의 데미지
+        if zombie[i] <= now + damage: # 좀비를 죽일 수 있으면
+            psum[i] = psum[i-1] + damage # 누적합에 데미지 추가
+        else: # 좀비를 죽일 수 없으면
+            if boom: # 지뢰가 있으면
+                boom -= 1 # 지뢰를 사용
+                psum[i] = psum[i-1] # 누적합에 데미지 추가 안함
+            else: # 지뢰가 없으면
+                return "NO" # 실패
+    return "YES" # 성공
     
 if __name__ == '__main__':
     input = sys.stdin.readline
