@@ -6,16 +6,19 @@ from collections import deque
 
 def solution(n):
     
-    dp = [0, 1]
+    if int(math.sqrt(n)) == math.sqrt(n):
+        return 1
     
-    for i in range(2, n+1):
-        minval = 1e9
-        j = 1
-        while j**2 <= i:
-            minval = min(minval, dp[i-(j**2)])
-            j += 1
-        dp.append(minval + 1) 
-    return dp[n]
+    for i in range(1, int(math.sqrt(n))+1):
+        if int(math.sqrt(n-i*i)) == math.sqrt(n-i*i):
+            return 2
+
+    for i in range(1, int(math.sqrt(n))+1):
+        for j in range(1, int(math.sqrt(n-i*i))+1):
+            if int(math.sqrt(n-i*i-j*j)) == math.sqrt(n-i*i-j*j):
+                return 3
+    
+    return 4
 
 if __name__ == '__main__':
     input = sys.stdin.readline
