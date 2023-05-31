@@ -18,7 +18,7 @@ from collections import *
 
 def conquest(n, mat, i, j, size):
     if size == 1:
-        return str(mat[i][j])
+        return mat[i][j]
     
     half = size // 2
     a = conquest(n, mat, i, j, half)
@@ -39,7 +39,7 @@ if __name__ == '__main__':
 
     # input
     n = int(input())
-    mat = [list(map(int, input().strip())) for _ in range(n)] 
+    mat = [list(map(str, input().strip())) for _ in range(n)] 
     
     # output
     print(solution(n, mat))
