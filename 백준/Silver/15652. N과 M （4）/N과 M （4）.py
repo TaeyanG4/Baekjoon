@@ -16,32 +16,25 @@ from itertools import *
 # from datetime import datetime
 #################################
 
-def dfs(start, cnt):
-    if cnt == m:
-        ans.append(temp.copy())
+def dfs(start):
+    if len(temp) == m:
+        print(*temp)
         return
     
     for i in range(start, n+1):
         temp.append(i)
-        dfs(i, cnt+1)
+        dfs(i)
         temp.pop()
 
 def solution(n, m):
-    dfs(1, 0)
-    
-    # output line
-    for i in ans:
-        for j in i:
-            print(j, end=' ')
-        print()
+    dfs(1)
 
 if __name__ == '__main__':
     input = sys.stdin.readline
 
     # input
     n, m = map(int, input().split())
-    ans, temp = list(), list()
-    cnt = 0
+    temp = list()
     
     # output
     solution(n, m)
