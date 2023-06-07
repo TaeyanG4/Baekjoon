@@ -1,48 +1,20 @@
-# import lines
-#################################
-import sys
-import math
-import copy
-# import ast
-# import re
-# import time
-# import json
-import pprint
-# import statistics as st
-# from decimal import *
-from collections import *
-from itertools import *
-# from heapq import *
-# from datetime import datetime
-#################################
+n, m = map(int, input().split())
+nums = sorted(list(map(int, input().split())))
+visited = [False] * n
+temp = []
 
-def solution(cnt):
-    if cnt == m:
-        visited_val.append(copy.deepcopy(tuple(temp)))
+def dfs():
+    if len(temp) == m:
+        print(*temp)
         return
-    
+    remember_me = 0
     for i in range(n):
-        if not visited[i]:
+        if not visited[i] and remember_me != nums[i]:
             visited[i] = True
-            temp.append(li[i])
-            solution(cnt+1)
+            temp.append(nums[i])
+            remember_me = nums[i]
+            dfs()
             visited[i] = False
             temp.pop()
-            
-if __name__ == '__main__':
-    input = sys.stdin.readline
 
-    # input
-    n, m = map(int, input().split())
-    li = list(map(int, input().split()))
-    li.sort()
-    visited = [False] * n
-    visited_val = []
-    cnt, temp = 0, []
-    
-    # output
-    
-    solution(0)
-    for i in sorted(list(set(visited_val))):
-        print(*i)
-    
+dfs()
