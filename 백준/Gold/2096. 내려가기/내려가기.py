@@ -1,7 +1,6 @@
 # import lines
 #################################
 import sys
-#################################
 
 def solution(max_li, min_li):
     for i in range(n):
