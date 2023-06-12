@@ -1,18 +1,4 @@
-# import lines
-#################################
 import sys
-import math
-import copy
-# import ast
-# import re
-# import time
-# import json
-# import pprint
-from collections import *
-from heapq import *
-# from itertools import *
-# from datetime import datetime
-#################################
 
 def solution():
     dist = [sys.maxsize] * (n+1)
