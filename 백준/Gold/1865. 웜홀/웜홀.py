@@ -16,8 +16,8 @@ from heapq import *
 
 def solution():
     for i in range(n):
-        for j in range(len(edges)):
-            cur, cost, nxt = edges[j]
+        for edge in edges:
+            cur, cost, nxt = edge
             if dist[nxt] > dist[cur] + cost:
                 dist[nxt] = dist[cur] + cost
                 if i == n-1:
