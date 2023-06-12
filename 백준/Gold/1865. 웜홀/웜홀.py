@@ -4,6 +4,7 @@ import sys
 #################################
 
 def solution():
+    dist = [sys.maxsize] * (n+1)
     for i in range(n):
         for edge in edges:
             cur, cost, nxt = edge
@@ -23,7 +24,6 @@ if __name__ == '__main__':
     # ouput
     for i in range(t):
         n, m, w = map(int, input().split())
-        dist = [sys.maxsize] * (n+1)
         edges = []
         
         for i in range(m):
