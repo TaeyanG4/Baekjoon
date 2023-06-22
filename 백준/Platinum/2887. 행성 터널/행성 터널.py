@@ -21,7 +21,7 @@ def find(vroot, n):
 
 def solution(n):
     elist = []
-    ans = 0
+    ans, cnt = 0, n-1
     
     xlst,ylst,zlst = [],[],[]
     for i in range(n):
@@ -36,9 +36,10 @@ def solution(n):
             w1, a = cur[i-1]
             w2, b = cur[i]
             elist.append((abs(w1-w2), a, b))
-    elist.sort()
+    elist.sort(reverse=True)
     
-    for w, s, e in elist:
+    while cnt:
+        w, s, e = elist.pop()
         sroot = find(vroot, s)
         eroot = find(vroot, e)
         if sroot != eroot:
@@ -46,6 +47,7 @@ def solution(n):
                 vroot[sroot] = eroot
             else:
                 vroot[eroot] = sroot
+            cnt -= 1
             ans += w
     return ans
 
