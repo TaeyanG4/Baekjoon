@@ -8,12 +8,14 @@ import math
 # import time
 # import json
 # import pprint
-from collections import *
+# from collections import *
 # from itertools import *
 # from heapq import *
 # from datetime import datetime
 # from bisect import *
 #################################
+# youtu.be/O895NbxirM8
+# https://bbbyung2.tistory.com/75
 
 def dfs(x, depth):
     visited[x] = True
@@ -25,7 +27,6 @@ def dfs(x, depth):
 
 def solution(a, b):
     # lca
-    global parent, d, visited, graph
     while d[a] != d[b]:
         if d[a] > d[b]:
             a = parent[a]
