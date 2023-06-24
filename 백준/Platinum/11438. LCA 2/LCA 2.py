@@ -2,6 +2,17 @@
 #################################
 import sys
 import math
+# import copy
+# import ast
+# import re
+# import time
+# import json
+# import pprint
+# from collections import *
+# from itertools import *
+# from heapq import *
+# from datetime import datetime
+# from bisect import *
 #################################
 
 # youtu.be/O895NbxirM8
@@ -46,7 +57,7 @@ def solution(a, b):
 
 if __name__ == '__main__':
     input = sys.stdin.readline
-    sys.setrecursionlimit(10**5)
+    sys.setrecursionlimit(10**9)
     
     # input
     n = int(input())
