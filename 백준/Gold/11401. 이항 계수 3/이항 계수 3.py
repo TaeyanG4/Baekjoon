@@ -31,7 +31,7 @@ def power(n, k):
         return pow_half * pow_half * n % MOD
 
 def inverse(n):
-    return pow(factorial[n], 1000000005, 1000000007)
+    return power(factorial[n], 1000000005)
 
 def solution(n, k):
     return factorial[n] * inverse(k) * inverse(n-k) % MOD
@@ -51,4 +51,3 @@ if __name__ == '__main__':
     
     # output
     print(solution(n, k))
-
