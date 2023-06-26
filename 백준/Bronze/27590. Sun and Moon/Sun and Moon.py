@@ -26,10 +26,18 @@ if __name__ == '__main__':
     ds, ys = map(int, input().split())
     dm, ym = map(int, input().split())
     
-    for i in range(0, 5000):
+    if ds%ys == 0 and dm%ym == 0:
+        print(0)
+    else:
+        temp = ys-ds
+        ds += temp
+        dm += temp
+    cnt = temp
+    for i in range(0, 5000, ys):
         if ds%ys == 0 and dm%ym == 0:
-            print(i)
+            print(cnt)
             break
         else:
-            ds += 1
-            dm += 1
+            ds += ys
+            dm += ys
+            cnt += ys
