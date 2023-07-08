@@ -8,29 +8,28 @@ import math
 # import time
 # import json
 # import pprint
-from collections import *
+# from collections import *
 # from itertools import *
 # from heapq import *
 # from datetime import datetime
 # from bisect import *
 #################################
 
-def solution(si, ei, sj, ej, n):
-    global stars
-    
+def solution(n):
     if n == 1:
-        return
+        return '*'
     
-    n = n//3
-    for i in range(si+n, ei-n):
-        for j in range(sj+n, ej-n):
-            stars[i][j] = ' '
+    stars = solution(n//3)
+    li = []
     
-    for i in range(3):
-        for j in range(3):
-            if i == 1 and j == 1:
-                continue
-            solution(si+n*i, si+n*(i+1), sj+n*j, sj+n*(j+1), n)
+    for star in stars:
+        li.append(star*3)
+    for star in stars:
+        li.append(star+' '*(n//3)+star)
+    for star in stars:
+        li.append(star*3)
+    
+    return li
 
 if __name__ == '__main__':
     input = sys.stdin.readline
@@ -38,9 +37,6 @@ if __name__ == '__main__':
     
     # input
     n = int(input())
-    stars = [['*' for _ in range(n)] for _ in range(n)]
     
     # output
-    solution(0, n, 0, n, n)
-    for star in stars:
-        print(''.join(star))
+    print('\n'.join(solution(n)))
