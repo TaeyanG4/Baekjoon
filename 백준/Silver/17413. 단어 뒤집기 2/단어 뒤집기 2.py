@@ -16,36 +16,21 @@ from collections import *
 #################################
 
 def solution(s):
+    ans = ''
     
-    stack, ans = [], []
-    flag = False
+    # input값에 있는 '<'와 '>'를 '_'로 변환후 '_'를 기준으로 split
+    s = s.replace('<', '_<').replace('>', '>_').split('_')
     
-    for c in s:
+    # split한 값들을 순회하면서
+    for words in s:
         
-        if c == '<':
-            flag = True
-            while stack:
-                    ans.append(stack.pop())
-            ans.append(c)
-            continue
-        elif c == '>':
-            flag = False
-            ans.append(c)
-            continue
-        
-        if flag:
-            ans.append(c)
+        # '<'와 '>'가 포함된 값은 그대로 ans에 추가
+        # '<'와 '>'가 포함되지 않은 값은 공백을 기준으로 split후 뒤집어서 ans에 추가
+        if words.startswith('<'): 
+            ans += words
         else:
-            if c == ' ' or c == '<':
-                while stack:
-                    ans.append(stack.pop())
-                ans.append(' ')
-            else:
-                stack.append(c)
-                
-    while stack:
-                ans.append(stack.pop())
-                
+            ans += ' '.join([word[::-1] for word in words.split()])
+            
     return ans
 
 if __name__ == '__main__':
