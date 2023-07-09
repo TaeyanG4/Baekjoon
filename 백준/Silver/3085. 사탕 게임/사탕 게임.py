@@ -17,60 +17,32 @@ import pprint
 # from bisect import *
 #################################
 
-def checker(mat):
-    max_val = 1
-    for r in mat:
-        if max_val == n:
-            return max_val
-        
-        cnt = 1
-        for i in range(n-1):
-            if r[i] == r[i+1]:
-                cnt += 1
-            else:
-                max_val = max(max_val, cnt)
-                cnt = 1
-        else:
-            max_val = max(max_val, cnt)
-
-    for c in zip(*mat):
-        if max_val == n:
-            return max_val
-        
-        cnt = 1
-        for i in range(n-1):
-            if c[i] == c[i+1]:
-                cnt += 1
-            else:
-                max_val = max(max_val, cnt)
-                cnt = 1
-        else:
-            max_val = max(max_val, cnt)
-            
-    return max_val
-
-def solution():
-    global mat
+def solution(mat):
     max_val = 0
-    
-    for i in range(n):
-        for j in range(n-1):
+    for y in range(n):
+        for x in range(n):
+            
             if max_val == n:
                 return max_val
-            else:
-                mat[i][j], mat[i][j+1] = mat[i][j+1], mat[i][j]
-                max_val = max(max_val, checker(mat))
-                mat[i][j], mat[i][j+1] = mat[i][j+1], mat[i][j]
-    
-    for i in range(n-1):
-        for j in range(n):
-            if max_val == n:
-                return max_val
-            else:
-                mat[i][j], mat[i+1][j] = mat[i+1][j], mat[i][j]
-                max_val = max(max_val, checker(mat))
-                mat[i][j], mat[i+1][j] = mat[i+1][j], mat[i][j]
-    
+            
+            for dy, dx in direction:
+                ny, nx = y + dy, x + dx
+                if 0 <= ny < n and 0 <= nx < n:
+                    t, b, l, r = 0, 0, 0, 0
+                    mat[y][x], mat[ny][nx] = mat[ny][nx], mat[y][x]
+                    
+                    while x-l >= 0 and mat[y][x] == mat[y][x-l]: 
+                        l += 1
+                    while x+r < n and mat[y][x] == mat[y][x+r]:
+                        r += 1
+                    while y-t >= 0 and mat[y][x] == mat[y-t][x]:
+                        t += 1
+                    while y+b < n and mat[y][x] == mat[y+b][x]:
+                        b += 1
+                    
+                    mat[y][x], mat[ny][nx] = mat[ny][nx], mat[y][x]
+                    max_val = max(max_val, t+b-1, l+r-1)
+                    
     return max_val
 
 if __name__ == '__main__':
@@ -80,6 +52,7 @@ if __name__ == '__main__':
     # input
     n = int(input())
     mat = [list(input().rstrip()) for _ in range(n)]
+    direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     
     # output
-    print(solution())
+    print(solution(mat))
