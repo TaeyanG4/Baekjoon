@@ -8,7 +8,7 @@ import math
 # import time
 # import json
 # import time
-import pprint
+# import pprint
 # from collections import *
 # from itertools import *
 # from statistics import *
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     
     # input
     n = int(input())
-    mat = [list(input().rstrip()) for _ in range(n)]
+    mat = [list(input()) for _ in range(n)]
     direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     
     # output
