@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 2212 KB, 시간: 348 ms
+메모리: 151360 KB, 시간: 3936 ms
 
 ### 분류
 
@@ -76,10 +76,10 @@
 <table class="table">
 	<tbody>
 		<tr>
-			<td style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/12094/17.png" style="height:250px; width:248px"></td>
-			<td style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/12094/18.png" style="height:250px; width:252px"></td>
-			<td style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/12094/19.png" style="height:250px; width:250px"></td>
-			<td style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/12094/20.png" style="height:250px; width:250px"></td>
+			<td style="text-align:center"><img alt="" src="" style="height:250px; width:248px"></td>
+			<td style="text-align:center"><img alt="" src="" style="height:250px; width:252px"></td>
+			<td style="text-align:center"><img alt="" src="" style="height:250px; width:250px"></td>
+			<td style="text-align:center"><img alt="" src="" style="height:250px; width:250px"></td>
 		</tr>
 	</tbody>
 	<tfoot>
@@ -99,8 +99,8 @@
 <table class="table">
 	<tbody>
 		<tr>
-			<td style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/12094/21.png" style="height:250px; width:249px"></td>
-			<td style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/12094/22.png" style="height:250px; width:249px"></td>
+			<td style="text-align:center"><img alt="" src="" style="height:250px; width:249px"></td>
+			<td style="text-align:center"><img alt="" src="" style="height:250px; width:249px"></td>
 		</tr>
 	</tbody>
 	<tfoot>
