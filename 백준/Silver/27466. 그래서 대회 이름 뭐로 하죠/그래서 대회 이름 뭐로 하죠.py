@@ -36,12 +36,13 @@ def solution(n, m, s):
         a2 = s.pop()
 
     new_s = s + [a2, a1, last]
+    new_s = ''.join(new_s)
     
-    if len(''.join(new_s)) >= m:
-        return 'YES'
+    if len(new_s) < m:
+        print('NO')
     else:
-        return 'NO'
-    
+        print('YES')
+        print(new_s[len(new_s)-m:])
 
 if __name__ == '__main__':
     input = sys.stdin.readline
@@ -52,4 +53,4 @@ if __name__ == '__main__':
     s = list(input().strip())
     
     # output
-    print(solution(n, m, s))
+    solution(n, m, s)
