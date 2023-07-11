@@ -37,7 +37,7 @@ def solution(n, m, s):
 
     new_s = s + [a2, a1, last]
     
-    if len(new_s) > m:
+    if len(new_s) >= m:
         return 'YES'
     else:
         return 'NO'
