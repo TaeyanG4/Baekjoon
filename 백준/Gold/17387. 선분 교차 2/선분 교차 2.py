@@ -38,7 +38,6 @@ def ccw(p1: Point, p2: Point, p3: Point) -> int:
     else: 
         return 0
 
-
 def isLined(p1: Point, p2: Point, p3: Point) -> bool:
     if p1.x < p2.x:
         return p2.x < p3.x
@@ -51,12 +50,12 @@ def isLined(p1: Point, p2: Point, p3: Point) -> bool:
             return p3.y < p2.y
 
 def intersection(l1: Line, l2: Line) -> bool:
-    ab = ccw(l1.p1, l1.p2, l2.p1) * ccw(l1.p1, l1.p2, l2.p2)
-    cd = ccw(l2.p1, l2.p2, l1.p1) * ccw(l2.p1, l2.p2, l1.p2)
+    a, b, c, d = l1.p1, l1.p2, l2.p1, l2.p2
+    ab = ccw(a, b, c) * ccw(a, b, d)
+    cd = ccw(c, d, a) * ccw(c, d, b)
     
     if ab == 0 and cd == 0:
-        if isLined(l1.p1, l1.p2, l2.p1) and isLined(l1.p1, l1.p2, l2.p2) or \
-            isLined(l1.p2, l1.p1, l2.p1) and isLined(l1.p2, l1.p1, l2.p2):
+        if (isLined(a, b, c) and isLined(a, b, d)) or (isLined(b, a, c) and isLined(b, a, d)):
                 return False
         else:
             return True
