@@ -1,10 +1,10 @@
-# [Silver II] 수학 선생님의 고민(Hard) - 28242 
+# [Silver I] 수학 선생님의 고민(Hard) - 28242 
 
 [문제 링크](https://www.acmicpc.net/problem/28242) 
 
 ### 성능 요약
 
-메모리: 33376 KB, 시간: 264 ms
+메모리: 31256 KB, 시간: 264 ms
 
 ### 분류
 
