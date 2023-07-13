@@ -1,0 +1,1 @@
+import math;int(input());print(2**int(math.log2(sum(map(int, input().split())))))
