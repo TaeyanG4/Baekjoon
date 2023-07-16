@@ -1,14 +1,14 @@
 # import lines
 #################################
 import sys
-import math
+# import math
 # import copy
 # import ast
 # import re
 # import time
 # import json
 # import time
-import pprint
+# import pprint
 from collections import *
 # from heapq import *
 # from itertools import *
@@ -19,7 +19,6 @@ from collections import *
 
 def solution():
     
-    max_val = 0
     dq = deque()
     for i in range(n):
         for j in range(m):
@@ -30,11 +29,10 @@ def solution():
         y, x = dq.popleft()
         for dy, dx in direction:
             ny, nx = y + dy, x + dx
-            if 0 <= ny < n and 0 <= nx < m and board[ny][nx] == 0:
+            if 0 <= ny < n and 0 <= nx < m and not board[ny][nx]:
                 dq.append((ny, nx))
                 board[ny][nx] = board[y][x] + 1
-                max_val = max(max_val, board[y][x] + 1)
-    return max_val - 1
+    return max(map(max, board)) - 1
 
 if __name__ == '__main__':
     input = sys.stdin.readline
