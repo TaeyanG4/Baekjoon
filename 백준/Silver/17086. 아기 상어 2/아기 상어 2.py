@@ -8,7 +8,7 @@ import math
 # import time
 # import json
 # import time
-# import pprint
+import pprint
 from collections import *
 # from heapq import *
 # from itertools import *
@@ -17,33 +17,24 @@ from collections import *
 # from bisect import *
 #################################
 
-def bfs(y, x, cnt):
-    
-    cnt = 0
-    q = deque([(y, x, cnt)])
-    visited = [[False] * m for _ in range(n)]
-    visited[y][x] = True
-
-    while q:
-        y, x, cnt = q.popleft()
-        for dy, dx in direction:
-            ny, nx = y + dy, x + dx
-            if 0 <= ny < n and 0 <= nx < m and not visited[ny][nx]:
-                if board[ny][nx]:
-                    return cnt + 1
-                else:
-                    visited[ny][nx] = True
-                    q.append((ny, nx, cnt + 1))
-
 def solution():
     
     max_val = 0
+    dq = deque()
     for i in range(n):
         for j in range(m):
-            if board[i][j] == 0:
-                max_val = max(max_val, bfs(i, j, 0))
+            if board[i][j]:
+                dq.append((i, j))
 
-    return max_val
+    while dq:
+        y, x = dq.popleft()
+        for dy, dx in direction:
+            ny, nx = y + dy, x + dx
+            if 0 <= ny < n and 0 <= nx < m and board[ny][nx] == 0:
+                dq.append((ny, nx))
+                board[ny][nx] = board[y][x] + 1
+                max_val = max(max_val, board[y][x] + 1)
+    return max_val - 1
 
 if __name__ == '__main__':
     input = sys.stdin.readline
