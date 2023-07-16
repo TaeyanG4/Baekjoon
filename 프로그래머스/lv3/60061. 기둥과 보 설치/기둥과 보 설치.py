@@ -2,8 +2,12 @@ def buildable(x, y, a, res):
     
     # 기둥
     if a == 0:
-        # 바닥이거나 기둥이 있는 경우
-        if y == 0 or (x, y - 1, 0) in res: 
+        # 바닥인 경우
+        if y == 0: 
+            return True
+        
+        # 기둥이 있는 경우
+        if (x, y - 1, 0) in res:
             return True
         
         # 바닥에 보가 있는 경우
@@ -12,7 +16,6 @@ def buildable(x, y, a, res):
         
         if (x, y, 1) in res: 
             return True
-    
     # 보
     else:
         # 양끝에 보가 있는경우
