@@ -17,6 +17,45 @@ import sys
 # from bisect import *
 #################################
 
+# dict를 이용한 방법
+# def solution(n, li):
+    
+#     # 좋은 수의 개수
+#     ans = 0
+    
+#     # 각 숫자가 몇 번 나왔는지 세기
+#     dic = defaultdict(int)
+#     for i in li:
+#         dic[i] += 1
+        
+#     # 좋은 수 세기
+#     for i in range(n):
+#         for j in range(i+1, n):
+#             temp = li[i] + li[j]
+            
+#             # 두 수 모두 합한 수와 같을 경우 (0 + 0 = 0)
+#             if temp == li[i] and temp == li[j]:
+#                 # 3개 이상 나왔을 경우 좋은수를 발견할 수 있다.
+#                 if dic[temp] >= 3:
+#                     ans += dic[temp]
+#                     dic[temp] = 0
+                    
+#             # 두 수 중 하나만 합한 수와 같을 경우 (0 + 1 = 1)
+#             elif temp == li[i] or temp == li[j]:
+#                 # 2개 이상 나왔을 경우 좋은수를 발견할 수 있다.
+#                 if dic[temp] >= 2:
+#                     ans += dic[temp]
+#                     dic[temp] = 0
+                    
+#             # 두 수 모두 합한 수와 다를 경우 (1 + 2 = 3)
+#             else:
+#                 # 1개 이상 나왔을 경우 좋은수를 발견할 수 있다.
+#                 if dic[temp] >= 1:
+#                     ans += dic[temp]
+#                     dic[temp] = 0
+#     return ans
+
+# 투 포인터를 이용한 방법
 def solution(n, li):
     ans = 0
     for num in li:
@@ -48,7 +87,8 @@ if __name__ == '__main__':
     
     # input
     n = int(input())
+    # li = list(map(int, input().split()))
     li = sorted(map(int, input().split()))
-    
+
     # output
     print(solution(n, li))
