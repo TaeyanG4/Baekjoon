@@ -1,7 +1,7 @@
 # import lines
 #################################
 import sys
-import math
+# import math
 # import copy
 # import ast
 # import re
@@ -54,7 +54,7 @@ if __name__ == '__main__':
                 lst[i+j].append((i, j))
     
     L = 2*n-1
-    visited = [0] * (2*n)
+    visited = [0] * L
 
     # output
     ans_white, ans_black = 0, 0
