@@ -22,7 +22,9 @@ def solution(n, li):
     for idx, num in enumerate(li):
         
         # num을 제외한 temp_li를 만든다.
-        temp_li = li[:idx] + li[idx+1:]
+        temp_li = []
+        temp_li.extend(li)
+        temp_li.remove(num)
         
         # 맨 왼쪽 temp_li[0], 맨 오른쪽 temp_li[n-2]
         s, e = 0, n-2
