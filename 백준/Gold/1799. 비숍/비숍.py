@@ -17,24 +17,26 @@ import math
 # from bisect import *
 #################################
 
+# https://www.youtube.com/watch?v=Op0dtMMyeyg
+
 def solution(num, cnt):
     
     global ans
     
     # 가지치기: 이대로 진행해도 갱신 가능성이 없는경우
-    if cnt+L-num <= ans:
+    if cnt+(L+1-num)//2 <= ans:
         return
     
-    if num == L:
+    if num >= L:
         ans = max(ans, cnt)
         return
     
     for ci, cj in lst[num]: # 현재 대각선번호에서 가능한 위치 하나씩 놓고 다음 대각선으로..
         if visited[ci-cj] == 0:
             visited[ci-cj] = 1
-            solution(num+1, cnt+1) # 놓는경우
+            solution(num+2, cnt+1) # 놓는경우
             visited[ci-cj] = 0
-    solution(num+1, cnt) # 놓지 않는경우
+    solution(num+2, cnt) # 놓지 않는경우
         
 if __name__ == '__main__':
     input = sys.stdin.readline
@@ -55,6 +57,13 @@ if __name__ == '__main__':
     visited = [0] * (2*n)
 
     # output
+    ans_white, ans_black = 0, 0
+    
     ans = 0
-    solution(0, 0)
-    print(ans)
+    solution(0, 0) # 0부터 2씩 증가 for black
+    ans_black = ans
+    
+    ans = 0
+    solution(1, 0) # 1부터 2씩 증가 for white
+    ans_white = ans
+    print(ans_black+ans_white)
