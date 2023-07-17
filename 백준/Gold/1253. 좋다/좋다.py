@@ -1,7 +1,7 @@
 # import lines
 #################################
 import sys
-import math
+# import math
 # import copy
 # import ast
 # import re
@@ -9,7 +9,7 @@ import math
 # import json
 # import time
 # import pprint
-from collections import *
+# from collections import *
 # from heapq import *
 # from itertools import *
 # from statistics import *
@@ -19,7 +19,7 @@ from collections import *
 
 def solution(n, li):
     ans = 0
-    for idx, num in enumerate(li):
+    for num in li:
         
         # num을 제외한 temp_li를 만든다.
         temp_li = []
@@ -37,6 +37,7 @@ def solution(n, li):
             elif sum_val == num: # 좋은 수가 있으면 +1하고 break
                 ans += 1
                 break
+            
     return ans
 
 if __name__ == '__main__':
