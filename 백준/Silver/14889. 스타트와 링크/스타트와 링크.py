@@ -18,16 +18,15 @@ from itertools import *
 #################################
 
 def solution(n, mat):
-    min_val = INF
-    for comb in combinations(range(n), n//2):
-        team_link, team_start = 0, 0
-        for i in range(n):
-            if i in comb:
-                team_link += sum([mat[i][j] for j in comb if i != j])
-            if i not in comb:
-                team_start += sum([mat[i][j] for j in range(n) if j not in comb and i != j])
-        min_val = min(min_val, abs(team_link - team_start))
-    return min_val
+    ans = INF
+    row, col = [sum(i) for i in mat], [sum(i) for i in zip(*mat)]
+    new_mat = [i+j for i, j in zip(row, col)]
+    total_sum = sum(new_mat) // 2
+    for combi in combinations(new_mat, n//2):
+        ans = min(ans, abs(total_sum-sum(combi)))
+        if not ans:
+            break
+    return ans
 
 if __name__ == '__main__':
     input = sys.stdin.readline
