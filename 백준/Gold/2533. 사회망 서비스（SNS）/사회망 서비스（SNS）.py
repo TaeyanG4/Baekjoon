@@ -23,7 +23,6 @@ def solution(start):
     global memo, visited, tree
     
     visited[start] = True
-    memo[start][1] += 1 # 자신이 얼리어답터인 경우 자신을 포함
     
     for node in tree[start]:
         if not visited[node]:
@@ -44,7 +43,7 @@ if __name__ == '__main__':
     # input
     n = int(input())
     tree = defaultdict(list)
-    memo = [[0, 0] for _ in range(n + 1)]
+    memo = [[0, 1] for _ in range(n + 1)]
     visited = [False for _ in range(n + 1)]
     
     for _ in range(n - 1):
