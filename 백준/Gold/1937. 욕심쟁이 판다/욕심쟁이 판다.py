@@ -20,8 +20,9 @@ import sys
 def solution(y, x):
     if visited[y][x]: 
         return visited[y][x]
-
-    visited[y][x] = 1
+    else:
+        visited[y][x] = 1
+        
     for dy, dx in direction:
         ny = y + dy
         nx = x + dx
@@ -33,7 +34,7 @@ def solution(y, x):
 if __name__ == '__main__':
     input = sys.stdin.readline
     # INF = sys.maxsize
-    # sys.setrecursionlimit(10**6)
+    sys.setrecursionlimit(25000)
     direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     
     # input
@@ -45,4 +46,5 @@ if __name__ == '__main__':
     for i in range(n):
         for j in range(n):
             solution(i, j)
+            
     print(max(map(max, visited)))
