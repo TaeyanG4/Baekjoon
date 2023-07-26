@@ -34,7 +34,7 @@ def solution(y, x):
 if __name__ == '__main__':
     input = sys.stdin.readline
     # INF = sys.maxsize
-    sys.setrecursionlimit(25000)
+    # sys.setrecursionlimit(25000)
     direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     
     # input
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     # output
     for i in range(n):
         for j in range(n):
-            solution(i, j)
+            if not visited[i][j]:
+                solution(i, j)
             
     print(max(map(max, visited)))
