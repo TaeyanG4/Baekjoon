@@ -1,47 +1,56 @@
-#import line
+# import lines
+#################################
 import sys
-import heapq
 import math
-from collections import deque
+# import copy
+# import ast
+# import re
+# import time
+# import json
+# import time
+# import pprint
+from collections import *
+# from heapq import *
+# from itertools import *
+# from statistics import *
+# from datetime import datetime
+# from bisect import *
+#################################
 
-dx = [0, 1, 0, -1]
-dy = [-1, 0, 1, 0]
-
-def bfs(graph, n, y, x):
-    
-    q = deque()
-    q.append((x, y))
-    graph[y][x] = 0
+def bfs(board, n, y, x):
+    q = deque([(y, x)])
+    board[y][x] = 0
     cnt = 1
     while q:
-        x, y = q.popleft()
-        for k in range(4):
-            ny, nx =  y + dy[k], x + dx[k]
-            
-            if 0 <= nx < n and 0 <= ny < n and graph[ny][nx] == 1:
-                q.append((nx, ny))
-                graph[ny][nx] = 0
+        y, x = q.popleft()
+        for dy, dx in direction:
+            ny, nx = y + dy, x + dx
+            if 0 <= ny < n and 0 <= nx < n and board[ny][nx] == 1:
+                board[ny][nx] = 0
+                q.append((ny, nx))
                 cnt += 1
     return cnt
 
-def solution(graph, n):
-    res = list()
-    for i in range(n):
-        for j in range(n):
-            if graph[i][j] == 1:
-                res.append(bfs(graph, n, i, j))
-    return res
-                
+def solution(n, board):
+    ans = []
+    for y in range(n):
+        for x in range(n):
+            if board[y][x] == 1:
+                ans.append(bfs(board, n, y, x))
+    return ans
+
 if __name__ == '__main__':
     input = sys.stdin.readline
-
+    # INF = sys.maxsize
+    # sys.setrecursionlimit(10**6)
+    direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    
     # input
     n = int(input())
-    graph = [[int(num) for num in input().strip()] for _ in range(n)]
+    board = [list(map(int, input().strip())) for _ in range(n)]
     
     # output
-    ans = solution(graph, n)
-    ans.sort()
+    ans = solution(n, board)
     print(len(ans))
-    for i in ans:
-        print(i)
+    for a in sorted(ans):
+        print(a)
