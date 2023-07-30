@@ -13,7 +13,7 @@ def solution(tickets):
     stack = ['ICN']
     while stack:
         cur = stack[-1]
-        if cur not in dic or len(dic[cur]) == 0:
+        if len(dic[cur]) == 0:
             answer.append(stack.pop())
         else:
             stack.append(dic[cur].pop())
