@@ -1,34 +1,45 @@
-#import line
+# import lines
+#################################
 import sys
-import heapq
 import math
-from collections import deque
+# import copy
+# import ast
+# import re
+# import time
+# import json
+# import time
+# import pprint
+from collections import *
+# from heapq import *
+# from itertools import *
+# from statistics import *
+# from datetime import datetime
+# from bisect import *
+#################################
 
-dy = [-1, 0, 1, 0]
-dx = [0, 1, 0, -1]
-
-def bfs(graph, y, x, n, m):
-    q = deque([(y, x)])
+def solution(n, m, board):
+    
+    # bfs
+    q = deque([(0, 0)]) # startX, startY (0, 0)부터 시작
     while q:
         y, x = q.popleft()
-        for i in range(4):
-            ny, nx = y+dy[i], x+dx[i]
-            if (0 <= ny < n) and (0 <= nx < m): 
-                if graph[ny][nx] == 1:
-                    graph[ny][nx] = graph[y][x] + 1
-                    q.append((ny, nx))
+        for dy, dx in direction:
+            ny, nx = y + dy, x + dx
+            if 0 <= ny < n and 0 <= nx < m and board[ny][nx] == 1:
+                board[ny][nx] = board[y][x] + 1
+                q.append((ny, nx))
     
-    return graph[n-1][m-1]
+    return board[n-1][m-1]
 
-def solution(n, m, graph):
-    return bfs(graph, 0, 0, n, m)
-                
 if __name__ == '__main__':
     input = sys.stdin.readline
-
+    # INF = sys.maxsize
+    # sys.setrecursionlimit(10**6)
+    direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    
     # input
     n, m = map(int, input().split())
-    graph = [[int(char) for char in input().strip()] for _ in range(n)]
+    board = [list(map(int, input().strip())) for _ in range(n)]
     
     # output
-    print(solution(n, m, graph))
+    print(solution(n, m, board))
