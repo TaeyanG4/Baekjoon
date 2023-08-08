@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 33376 KB, 시간: 56 ms
+메모리: 31256 KB, 시간: 44 ms
 
 ### 분류
 
@@ -20,7 +20,7 @@
 
 <p>트럼프 카드는 다음과 같은 52장의 카드로 구성된다.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="height: 215px; width: 500px;"></p>
+<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/64df8111-c7d3-4fca-82d0-13950a80294b/-/preview/" style="height: 215px; width: 500px;"></p>
 
 <p style="text-align: center;"><em><b>Figure</b></em>:<b> </b>트럼프 카드 (Playing Card)의 구성</p>
 
