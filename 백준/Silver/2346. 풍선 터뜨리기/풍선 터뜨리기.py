@@ -29,27 +29,16 @@ if __name__ == '__main__':
     
     # input
     n = int(input())
-    li = list(map(int, input().split()))
-    dq = deque()
-    for idx, val in enumerate(li):
-        dq.append((idx, val))
-    
+    dq = deque(enumerate(map(int, input().split())))
     ans = []
     while dq: 
         idx, val = dq.popleft()
         ans.append(idx+1)
         
-        tmp = val
-        if tmp > 0:
-            tmp -= 1
+        if val > 0:
+            dq.rotate(-(val-1))
+        else:
+            dq.rotate(-val)
         
-        while tmp != 0 and dq:
-            if tmp > 0:
-                dq.append(dq.popleft())
-                tmp -= 1
-            else:
-                dq.appendleft(dq.pop())
-                tmp += 1
-    
     # output
     print(*ans)
