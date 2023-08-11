@@ -18,19 +18,11 @@ import math
 #################################
 
 def solution(n, k, li):
-    ans = -INF
-    if k == 1:
-        ans = max(li)
-    elif k == 2:
-        for i in range(1, n):
-            ans = max(ans, li[i-1] + li[i])
-    else:
-        temp = sum(li[:k])
-        ans = temp
-        for i in range(n-k):
-            temp = temp - li[i] + li[i+k]
-            ans = max(ans, temp)
-    return ans
+    ans = []
+    ans.append(sum(li[:k]))
+    for i in range(n-k):
+        ans.append(ans[i] - li[i] + li[i+k])
+    return max(ans)
 
 if __name__ == '__main__':
     input = sys.stdin.readline
