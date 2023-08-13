@@ -17,17 +17,21 @@ from heapq import *
 # from bisect import *
 #################################
 
-def solution(n, li):
-    mx = max(li)
-    heapify(li)
+def solution(n):
+    mx = 0
+    pq = []
+    for v in map(int, input().split()):
+        mx = max(mx, v)
+        heappush(pq, v)
+    
     cur_mx = mx
-    ans = cur_mx - li[0]
-    while li[0] < mx:
-        v = heappop(li)
+    ans = cur_mx - pq[0]
+    while pq[0] < mx:
+        v = heappop(pq)
         ans = min(ans, cur_mx-v)
         cur_mx = max(cur_mx, v*2)
-        heappush(li, v*2)
-    return min(ans, cur_mx-li[0])
+        heappush(pq, v*2)
+    return min(ans, cur_mx-pq[0])
 
 if __name__ == '__main__':
     input = sys.stdin.readline
@@ -38,7 +42,6 @@ if __name__ == '__main__':
     
     # input
     n = int(input())
-    li = list(map(int, input().split()))
     
     # output
-    print(solution(n, li))
+    print(solution(n))
