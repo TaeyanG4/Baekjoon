@@ -18,6 +18,7 @@ import math
 #################################
 
 # https://velog.io/@front/백준-Ignition-13141-kpwbnuo4
+# https://everenew.tistory.com/169
 
 def init_floyd_warshall(distance):
     for k in range(1, n+1):
@@ -36,7 +37,7 @@ def solution(distance, longest_distance):
                     continue
                 remainLen = longest_distance[m][e] - (distance[s][e] - distance[s][m])
                 if remainLen:
-                    temp = max(temp, remainLen / 2+distance[s][e])
+                    temp = max(temp, remainLen/2 + distance[s][e])
         ans = min(ans, temp)
     return ans
 
