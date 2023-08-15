@@ -10,7 +10,7 @@ import math
 # import json
 # import time
 # import pprint
-from collections import *
+# from collections import *
 # from heapq import *
 # from itertools import *
 # from statistics import *
@@ -37,11 +37,11 @@ if __name__ == '__main__':
     n = int(input())
     li = [[0] * 26 for _ in range(len(s))]
     
-    for i, c in enumerate(s):
-        li[i][ord(c) - ord('a')] = 1
+    li[0][ord(s[0]) - ord('a')] = 1
+    for i in range(1, len(s)):
+        li[i][ord(s[i]) - ord('a')] = 1
         for j in range(26):
-            if i > 0:
-                li[i][j] += li[i - 1][j]
+            li[i][j] += li[i - 1][j]
 
     # output
     for _ in range(n):
