@@ -19,11 +19,11 @@ from collections import *
 #################################
 
 def solution(cmd, l, r):
-    cnt = 0
-    for i in dic[cmd]:
-        if int(l) <= i <= int(r):
-            cnt += 1
-    return cnt
+    c = ord(cmd) - ord('a')
+    if l == 0:
+        return li[r][c]
+    else:
+        return li[r][c] - li[l - 1][c]
 
 if __name__ == '__main__':
     input = sys.stdin.readline
@@ -35,12 +35,16 @@ if __name__ == '__main__':
     # input
     s = input().rstrip()
     n = int(input())
-    dic = defaultdict(list)
+    li = [[0] * 26 for _ in range(len(s))]
     
     for i, c in enumerate(s):
-        dic[c].append(i)
-    
+        li[i][ord(c) - ord('a')] = 1
+        for j in range(26):
+            if i > 0:
+                li[i][j] += li[i - 1][j]
+
     # output
     for _ in range(n):
         cmd, l, r = map(str, input().split())
+        l, r, = int(l), int(r)
         print(solution(cmd, l, r))
