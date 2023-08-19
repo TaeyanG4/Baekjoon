@@ -9,7 +9,7 @@ import math
 # import time
 # import json
 # import time
-import pprint
+# import pprint
 # from collections import *
 # from heapq import *
 # from itertools import *
@@ -57,36 +57,32 @@ if __name__ == '__main__':
     # input
     n, m, k = map(int, input().split())
     board = [list(input().rstrip()) for _ in range(n)]
-    black_start = []
-    white_start = []
     
-    flag = True
+    black_start, white_start = [], []
+    black_flag, white_flag = True, False
     for i in range(n):
-        temp = []
-        for j in range(m):
-            if flag:
-                temp.append('B')
-                flag = not flag
-            else:
-                temp.append('W')
-                flag = not flag
-        black_start.append(temp)
-        if m % 2 == 0:
-            flag = not flag
         
-    flag = False
-    for i in range(n):
-        temp = []
+        black_temp, white_temp = [], []
         for j in range(m):
-            if flag:
-                temp.append('B')
-                flag = not flag
+            if black_flag:
+                black_temp.append('B')
+                black_flag = not black_flag
             else:
-                temp.append('W')
-                flag = not flag
-        white_start.append(temp)
+                black_temp.append('W')
+                black_flag = not black_flag
+                
+            if white_flag:
+                white_temp.append('B')
+                white_flag = not white_flag
+            else:
+                white_temp.append('W')
+                white_flag = not white_flag
+                
+        black_start.append(black_temp)
+        white_start.append(white_temp)
         if m % 2 == 0:
-            flag = not flag
+            black_flag = not black_flag
+            white_flag = not white_flag
 
     # output
     print(solution(n, m, k, board))
