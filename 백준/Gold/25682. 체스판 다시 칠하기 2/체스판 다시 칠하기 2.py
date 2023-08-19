@@ -22,19 +22,39 @@ def solution(n, m, k, board):
     ans = INF
     black_start_pSum = [[0] * (m+1) for _ in range(n+1)]
     white_start_pSum = [[0] * (m+1) for _ in range(n+1)]
+    black_flag, white_flag = True, False
     
     for i in range(n):
         for j in range(m):
             
-            if board[i][j] != black_start[i][j]:
+            black_temp, white_temp = '', ''
+            if black_flag:
+                black_temp = 'B'
+                black_flag = not black_flag
+            else:
+                black_temp = 'W'
+                black_flag = not black_flag
+                
+            if white_flag:
+                white_temp = 'B'
+                white_flag = not white_flag
+            else:
+                white_temp = 'W'
+                white_flag = not white_flag
+                
+            if board[i][j] != black_temp:
                 black_start_pSum[i][j] = black_start_pSum[i][j-1] + black_start_pSum[i-1][j] - black_start_pSum[i-1][j-1] + 1
             else:
                 black_start_pSum[i][j] = black_start_pSum[i][j-1] + black_start_pSum[i-1][j] - black_start_pSum[i-1][j-1]
             
-            if board[i][j] != white_start[i][j]:
+            if board[i][j] != white_temp:
                 white_start_pSum[i][j] = white_start_pSum[i][j-1] + white_start_pSum[i-1][j] - white_start_pSum[i-1][j-1] + 1
             else:
                 white_start_pSum[i][j] = white_start_pSum[i][j-1] + white_start_pSum[i-1][j] - white_start_pSum[i-1][j-1]
+        
+        if m % 2 == 0:
+            black_flag = not black_flag
+            white_flag = not white_flag
     
     # pprint.pprint(black_start_pSum)
     # pprint.pprint(white_start_pSum)
@@ -58,31 +78,31 @@ if __name__ == '__main__':
     n, m, k = map(int, input().split())
     board = [list(input().rstrip()) for _ in range(n)]
     
-    black_start, white_start = [], []
-    black_flag, white_flag = True, False
-    for i in range(n):
+    # black_start, white_start = [], []
+    # black_flag, white_flag = True, False
+    # for i in range(n):
         
-        black_temp, white_temp = [], []
-        for j in range(m):
-            if black_flag:
-                black_temp.append('B')
-                black_flag = not black_flag
-            else:
-                black_temp.append('W')
-                black_flag = not black_flag
+    #     black_temp, white_temp = [], []
+    #     for j in range(m):
+    #         if black_flag:
+    #             black_temp.append('B')
+    #             black_flag = not black_flag
+    #         else:
+    #             black_temp.append('W')
+    #             black_flag = not black_flag
                 
-            if white_flag:
-                white_temp.append('B')
-                white_flag = not white_flag
-            else:
-                white_temp.append('W')
-                white_flag = not white_flag
+    #         if white_flag:
+    #             white_temp.append('B')
+    #             white_flag = not white_flag
+    #         else:
+    #             white_temp.append('W')
+    #             white_flag = not white_flag
                 
-        black_start.append(black_temp)
-        white_start.append(white_temp)
-        if m % 2 == 0:
-            black_flag = not black_flag
-            white_flag = not white_flag
+    #     black_start.append(black_temp)
+    #     white_start.append(white_temp)
+    #     if m % 2 == 0:
+    #         black_flag = not black_flag
+    #         white_flag = not white_flag
 
     # output
     print(solution(n, m, k, board))
