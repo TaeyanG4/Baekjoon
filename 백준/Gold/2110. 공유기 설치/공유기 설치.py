@@ -20,19 +20,14 @@ import math
 #################################
 
 def solution(n, c, li):
-    
-    if c == 2:
-        return li[-1] - li[0]
-    
-    ans = -INF
-    s, e = 1, li[-1]-li[0]
+    s, e = 1, (li[-1]-li[0]) // (c-1) + 1
     while s < e:
         m = (s + e) // 2
         temp = li[0]
         cnt = 1
-        for i in range(n):
-            if li[i] - temp >= m:
-                temp = li[i]
+        for i in li:
+            if i - temp >= m:
+                temp = i
                 cnt += 1
         
         if cnt >= c:
