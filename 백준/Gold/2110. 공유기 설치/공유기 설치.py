@@ -3,7 +3,7 @@
 #################################
 ## my import lines
 import sys
-import math
+# import math
 # import copy
 # import ast
 # import re
@@ -23,19 +23,17 @@ def solution(n, c, li):
     s, e = 1, (li[-1]-li[0]) // (c-1) + 1
     while s < e:
         m = (s + e) // 2
-        temp = li[0]
-        cnt = 1
+        cnt, v  = 1, li[0]
         for i in li:
-            if i - temp >= m:
-                temp = i
-                cnt += 1
+            if i - v >= m:
+                cnt, v =  cnt+1, i
         
         if cnt >= c:
-            s = m + 1
             ans = m
-        elif cnt < c:
+            s = m+1
+        else:
             e = m
-    
+            
     return ans
 
 if __name__ == '__main__':
