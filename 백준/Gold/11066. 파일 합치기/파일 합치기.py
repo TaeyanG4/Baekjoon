@@ -20,6 +20,7 @@ import sys
 # from bisect import *
 #################################
 
+# python fail, pypy pass
 # def solution(k, li):
     
 #     dp = [[0] * (k+1) for _ in range(k+1)]
@@ -33,33 +34,16 @@ import sys
 #             dp[s][e] = INF
 #             for i in range(s, e):
 #                 dp[s][e] = min(dp[s][e], dp[s][i] + dp[i+1][e] + prefix_sum[e] - prefix_sum[s-1])
+
+#     ## for debug
 #     # print(prefix_sum)
 #     # pprint.pprint(dp)
+
 #     return dp[0][k-1]
-
-def solution(k, li):
-    
-    # dp + prefix_sum
-    dp = [[0] * (k) for _ in range(k)]
-    for i in range(k-1):
-        dp[i][i+1] = li[i] + li[i+1]
-        for j in range(i+2, k):
-            dp[i][j] = dp[i][j-1] + li[j]
-            
-    for g in range(2, k):
-        for s in range(k-g):
-            e = s + g
-            min_vals = []
-            for i in range(s, e):
-                min_vals.append(dp[s][i] + dp[i+1][e])
-            dp[s][e] += min(min_vals)
-
-    # pprint.pprint(dp)
-    return dp[0][k-1]
 
 if __name__ == '__main__':
     input = sys.stdin.readline
-    INF = sys.maxsize
+    # INF = sys.maxsize
     # MOD = 10**9 + 7
     # sys.setrecursionlimit(10**6)
     # direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
@@ -70,5 +54,20 @@ if __name__ == '__main__':
     # output
     for i in range(t):
         k = int(input())
-        li = list(map(int, input().split()))
-        print(solution(k, li))
+        li = [*map(int, input().split())]
+        
+        # dp + prefix_sum
+        # k 크기만큼 2차원 배열을 설정 후, dp[i][j]에 li[i]부터 li[j]까지의 합을 저장한다.
+        dp = [[0] * (k) for _ in range(k)]
+        for i in range(k-1):
+            dp[i][i+1] = li[i] + li[i+1]
+            for j in range(i+2, k):
+                dp[i][j] = dp[i][j-1] + li[j]
+            
+        # dp[s][i] + dp[i+1][e] 값들을 min_vals에 저장후 가장 작은 값과 dp[s][e]를 더한다.
+        for g in range(2, k):
+            for s in range(k-g):
+                e = s + g
+                dp[s][e] += min([dp[s][i] + dp[i+1][e] for i in range(s, e)])
+                
+        print(dp[0][-1])
