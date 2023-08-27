@@ -14,7 +14,7 @@ import sys
 # import json
 # import time
 # import pprint
-from collections import defaultdict
+# from collections import defaultdict
 # from heapq import *
 # from itertools import *
 # from statistics import *
@@ -60,3 +60,44 @@ if __name__ == '__main__':
             print('Y', end=' ')
         else:
             print('N', end=' ')
+
+# solution 2            
+# def dfs(idx, left, right):
+#     diff = abs(left - right)
+#     if idx >= n:
+#         note.add(diff)
+#         return
+    
+#     if memo[idx][diff]:
+#         return
+    
+#     memo[idx][diff] = True
+#     note.add(diff)
+    
+#     dfs(idx + 1, left, right) # 추를 추가하지 않는 경우
+#     dfs(idx + 1, left + weights[idx], right) # 왼쪽에 추를 추가하는 경우
+#     dfs(idx + 1, left, right + weights[idx]) # 오른쪽에 추를 추가하는 경우
+
+# if __name__ == '__main__':
+#     input = sys.stdin.readline
+#     # INF = sys.maxsize
+#     # MOD = 10**9 + 7
+#     # sys.setrecursionlimit(10**6)
+#     # direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+    
+#     # input
+#     n = int(input())
+#     weights = list(map(int, input().split()))
+    
+#     # dfs
+#     memo = [[False for _ in range((i+1)*500+1)] for i in range(n+1)]
+#     note = set()
+#     dfs(0, 0, 0)
+    
+#     # output
+#     m = int(input())
+#     for i in map(int, input().split()):
+#         if i in note:
+#             print('Y', end=' ')
+#         else:
+#             print('N', end=' ')
