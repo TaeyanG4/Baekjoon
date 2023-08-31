@@ -18,8 +18,6 @@ from heapq import *
 # from bisect import *
 #################################
 
-
-
 def dijkstra(graph, start, end):
     dist = [INF] * (n + 1)
     dist[start] = 0
@@ -47,12 +45,18 @@ def solution(graph, n, m, t, s, g, h, x, gh_dist):
     ans = []
     for v in x:
         dist = dijkstra(graph, s, v)
+        
         sg_dist = dijkstra(graph, s, g)
-        gv_dist = dijkstra(graph, g, v)
-        sh_dist = dijkstra(graph, s, h)
         hv_dist = dijkstra(graph, h, v)
-        if dist[v] == (sg_dist[g] + gh_dist + hv_dist[v]) or dist[v] == (sh_dist[h] + gh_dist + gv_dist[v]):
+        if dist[v] == (sg_dist[g] + gh_dist + hv_dist[v]):
             ans.append(v)
+            continue
+        
+        sh_dist = dijkstra(graph, s, h)
+        gv_dist = dijkstra(graph, g, v)
+        if dist[v] == (sh_dist[h] + gh_dist + gv_dist[v]):
+            ans.append(v)
+
     return sorted(ans)
 
 if __name__ == '__main__':
