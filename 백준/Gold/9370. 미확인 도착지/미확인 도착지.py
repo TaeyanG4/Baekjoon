@@ -45,16 +45,14 @@ def solution(graph, n, m, t, s, g, h, x, gh_dist):
     ans = []
     for v in x:
         dist = dijkstra(graph, s, v)
-        
-        sg_dist = dijkstra(graph, s, g)
+
         hv_dist = dijkstra(graph, h, v)
-        if dist[v] == (sg_dist[g] + gh_dist + hv_dist[v]):
+        if dist[v] == (dist[g] + gh_dist + hv_dist[v]):
             ans.append(v)
             continue
         
-        sh_dist = dijkstra(graph, s, h)
         gv_dist = dijkstra(graph, g, v)
-        if dist[v] == (sh_dist[h] + gh_dist + gv_dist[v]):
+        if dist[v] == (dist[h] + gh_dist + gv_dist[v]):
             ans.append(v)
 
     return sorted(ans)
@@ -69,7 +67,6 @@ if __name__ == '__main__':
     # input
     T = int(input())
     
-    # output
     for _ in range(T):
         graph = defaultdict(list)
         n, m, t = map(int, input().split())
@@ -81,4 +78,6 @@ if __name__ == '__main__':
             if (a == g and b == h) or (a == h and b == g):
                 gh_dist = d
         x = [int(input()) for _ in range(t)]
+        
+        # output
         print(*solution(graph, n, m, t, s, g, h, x, gh_dist))
