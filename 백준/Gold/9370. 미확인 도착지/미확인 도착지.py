@@ -78,6 +78,7 @@ if __name__ == '__main__':
             if (a == g and b == h) or (a == h and b == g):
                 gh_dist = d
         x = [int(input()) for _ in range(t)]
+        x.sort()
         
         # output
         print(*solution(graph, n, m, t, s, g, h, x, gh_dist))
