@@ -22,23 +22,14 @@ from collections import *
 
 def solution():
     for i in range(2, n+1):
-        way1, way2, way3 = INF, INF, INF
-        if i%3==0:
-            way1 = memo[i//3]
-        if i%2==0:
-            way2 = memo[i//2]
-        way3 = memo[i-1]
-        
-        if min(way1, way2, way3) == way1:
-            memo[i] = way1 + 1
+        memo[i] = memo[i-1] + 1
+        graph[i] = i-1
+        if i%3 == 0 and memo[i] > memo[i//3] + 1:
+            memo[i] = memo[i//3] + 1
             graph[i] = i//3
-        elif min(way1, way2, way3) == way2:
-            memo[i] = way2 + 1
+        if i%2 == 0 and memo[i] > memo[i//2] + 1:
+            memo[i] = memo[i//2] + 1
             graph[i] = i//2
-        else:
-            memo[i] = way3 + 1
-            graph[i] = i-1
-    
     return memo
 
 if __name__ == '__main__':
