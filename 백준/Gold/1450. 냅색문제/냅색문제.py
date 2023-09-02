@@ -40,14 +40,7 @@ def solution():
         if r > c:
             continue
         
-        s, e = 0, len(left_sum) - 1
-        while s <= e:
-            m = (s + e) // 2
-            if left_sum[m] + r > c:
-                e = m - 1
-            else:
-                s = m + 1
-        ans += e + 1
+        ans += bisect_right(left_sum, c-r)
         
     return ans
 
