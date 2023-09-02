@@ -20,13 +20,6 @@ import sys
 # from decimal import *
 #################################
 
-def floyd_warshall(n):
-    for k in range(1, n+1):
-        for i in range(1, n+1):
-            for j in range(1, n+1):
-                dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
-    return dist
-
 def solution(n, m, dist):
     
     ans = INF
@@ -43,11 +36,17 @@ if __name__ == '__main__':
     
     # input
     n, m = map(int, input().split())
-    dist = [[INF] * (n+1) for _ in range(n+1)]
+    dist = [[INF] * n for _ in range(n)]
     for _ in range(m):
         a, b, d = map(int, input().split())
-        dist[a][b] = d
-    floyd_warshall(n)
+        dist[a-1][b-1] = d
+    
+    # floyd-warshall
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if dist[i][j] > dist[i][k] + dist[k][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
 
     # output
     print(solution(n, m, dist))
