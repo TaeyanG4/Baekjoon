@@ -42,7 +42,7 @@ def solution():
         else:
             cycle.append(a)
 
-    for i in range(n + 1):
+    for i in range(1, n + 1):
         find(i)
         
     group = set()
@@ -83,4 +83,5 @@ if __name__ == '__main__':
             print(f'Case {cnt}: There is one tree.')
         else:
             print(f'Case {cnt}: A forest of {ans} trees.')
+            
         cnt += 1
