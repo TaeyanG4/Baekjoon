@@ -30,6 +30,9 @@ def get_ind_set(node):
     
         1은 자신을 포함하는 경우, 0은 자신을 포함하지 않는 경우를 뜻한다.
         visited[node] = True 이미 방문한 노드는 다시 방문하지 않도록 한다.
+        
+        자기자신을 포함하는 경우, 자식 노드는 포함하지 않는다.
+        자기자신을 포함하지 않는 경우, 자식 노드는 포함할 수도 있고, 포함하지 않을 수도 있다.
     
     Args:
         node (int): 
@@ -48,20 +51,16 @@ def get_ind_set(node):
         if not visited[x]:
             temp_path = get_ind_set(x)
             
-            # 자신을 포함하는 경우
+            # 자신을 포함하는 경우 
             memo[node][1] += memo[x][0]
-            
-            # 자신을 포함하지 않는 경우
-            memo[node][0] += max(memo[x]) # max(memo[x][0], memo[x][1])
-            
-            # 자신을 포함하는 경우
             path[node][1].extend(temp_path[0])
             
             # 자신을 포함하지 않는 경우
+            memo[node][0] += max(memo[x]) # max(memo[x][0], memo[x][1])
             if memo[x][0] > memo[x][1]:
-                path[node][0] += temp_path[0]
+                path[node][0].extend(temp_path[0])
             else:
-                path[node][0] += temp_path[1]
+                path[node][0].extend(temp_path[1])
     
     return path[node]
 
