@@ -18,7 +18,7 @@ def get_subtree_cnt(x):
 if __name__ == "__main__":
     input = sys.stdin.readline
     S = lambda: map(int, input().split())
-    sys.setrecursionlimit(10**9)
+    sys.setrecursionlimit(10**5)
     
     n, r, q = map(int, input().split()) # n: 정점의 개수, r: 루트 노드, q: 쿼리의 개수
     cnt = [0] * (n+1)
