@@ -1,86 +1,113 @@
+## taeyang's template (1.0.7)
+#################################
+## my import lines
 import sys
 import math
-import copy
-import ast
-import re
-import statistics as st
-from decimal import *
+# import copy
+# import ast
+# import re
+# import time
+# import json
+# import pprint
 from collections import *
-from itertools import *
-from heapq import *
+# from heapq import *
+# from queue import PriorityQueue
+# from itertools import *
+# from statistics import *
+# from datetime import *
+# from bisect import *
+# from fractions import Fraction
+# from decimal import *
+#################################
+
 
 class Point:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
+    def __init__(self, x: int, y: int):
+        self.x, self.y = x, y
+    
+    # self.x, self.y를 반환 (x, y = point1)
+    def __iter__(self):
+        return iter((self.x, self.y))
+
 
 class Line:
     def __init__(self, p1: Point, p2: Point):
-        self.p1 = p1
-        self.p2 = p2
+        self.p1, self.p2 = p1, p2
+    
+    # self.p1, self.p2를 반환 (p1, p2 = line1)
+    def __iter__(self):
+        return iter((self.p1, self.p2))
 
-def direction(a: Point, b: Point, c: Point):
-    dxab = b.x - a.x
-    dxac = c.x - a.x
-    dyab = b.y - a.y
-    dyac = c.y - a.y
 
-    if dxab * dyac < dyab * dxac:
-        dir = 1
-    elif dxab * dyac > dyab * dxac:
-        dir = -1
+def ccw_direction(p1: Point, p2: Point, p3: Point) -> int:
+    dx1, dy1 = p2.x - p1.x, p2.y - p1.y
+    dx2, dy2 = p3.x - p1.x, p3.y - p1.y
+    
+    if dx1 * dy2 > dy1 * dx2:
+        return 1
+    elif dx1 * dy2 < dy1 * dx2:
+        return -1
     else:
-        if dxab == 0 and dyab == 0:
-            dir == 0
-        if dxab * dxac < 0 or dyab * dyac < 0:
-            dir = -1
-        elif dxab * dxab + dyab * dyab >= dxac * dxac + dyac * dyac:
-            dir = 0
+        if dx1 == 0 and dy1 == 0:
+            return 0
+        elif (dx1 * dx2 < 0) or (dy1 * dy2 < 0):
+            return -1
+        elif (dx1 * dx1 + dy1 * dy1) < (dx2 * dx2 + dy2 * dy2):
+            return 1
         else:
-            dir = 1
-    return dir
+            return 0
 
-def intersection(l1: Line, l2: Line):
-    if direction(l1.p1, l1.p2, l2.p1) * direction(l1.p1, l1.p2, l2.p2) <= 0 and \
-            direction(l2.p1, l2.p2, l1.p1) * direction(l2.p1, l2.p2, l1.p2) <= 0:
+
+def intersect(line1: Line, line2: Line) -> bool:
+    A, B = line1
+    C, D = line2
+    if ccw_direction(A, B, C) * ccw_direction(A, B, D) <= 0 and ccw_direction(C, D, A) * ccw_direction(C, D, B) <= 0:
         return True
-    return False
+    else:
+        return False
 
-def find_parent(parent, x):
+
+def find(x):
     if parent[x] != x:
-        parent[x] = find_parent(parent, parent[x])
+        parent[x] = find(parent[x])
     return parent[x]
 
-def union_parent(parent, a, b):
-    a = find_parent(parent, a)
-    b = find_parent(parent, b)
+
+def union(a, b):
+    a, b = find(a), find(b)
     if a < b:
         parent[b] = a
     else:
         parent[a] = b
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     input = sys.stdin.readline
-    
-    # Input
-    n = int(input().strip())
+    S = lambda: map(int, input().split())
+    # INF = float('inf')
+    # MOD = 10**9 + 7
+    # sys.setrecursionlimit(10**6)
+    # direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    # input
+    # n, m = map(int, input().split())
+    # lst = [*map(int, input().split())]
+    n = int(input())
     lines = []
     parent = [i for i in range(n)]
-    for i in range(n):
-        x1, y1, x2, y2 = map(int, input().split())
+    for _ in range(n):
+        x1, y1, x2, y2 = S()
         lines.append(Line(Point(x1, y1), Point(x2, y2)))
+        
     
     for i in range(n):
-        for j in range(i + 1, n):
-            if intersection(lines[i], lines[j]):
-                union_parent(parent, i, j)
+        for j in range(i+1, n):
+            if intersect(lines[i], lines[j]):
+                union(i, j)
                 
-    parent = [find_parent(parent, x) for x in parent]
-    
-    # Output
+    parent = [find(i) for i in parent]
+        
+    # output
     cnt = Counter(parent)
-    print(len(cnt)) # 그룹의 수
-    print(max(cnt.values())) # 가장 크기가 큰 그룹에 속하는 선분의 개수
-    
-# https://velog.io/@hanbin/%EB%B0%B1%EC%A4%80-2162%EB%B2%88-%EC%84%A0%EB%B6%84-%EA%B7%B8%EB%A3%B9-with-Python
-    
+    print(len(cnt))
+    print(max(cnt.values()))

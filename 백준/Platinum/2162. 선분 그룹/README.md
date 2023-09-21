@@ -4,11 +4,11 @@
 
 ### 성능 요약
 
-메모리: 51760 KB, 시간: 3168 ms
+메모리: 120972 KB, 시간: 468 ms
 
 ### 분류
 
-자료 구조(data_structures), 분리 집합(disjoint_set), 기하학(geometry), 선분 교차 판정(line_intersection)
+자료 구조, 분리 집합, 기하학, 선분 교차 판정
 
 ### 문제 설명
 
