@@ -1,5 +1,6 @@
-# import lines
+## taeyang's template (1.0.7)
 #################################
+## my import lines
 import sys
 import math
 # import copy
@@ -7,75 +8,87 @@ import math
 # import re
 # import time
 # import json
-# import time
 # import pprint
 # from collections import *
+# from heapq import *
+# from queue import PriorityQueue
 # from itertools import *
 # from statistics import *
-# from heapq import *
-# from datetime import datetime
+# from datetime import *
 # from bisect import *
+# from fractions import Fraction
+# from decimal import *
 #################################
-
-# https://johoonday.tistory.com/107
-# https://hsdevelopment.tistory.com/390
 
 class Point:
     def __init__(self, x: int, y: int):
         self.x, self.y = x, y
-
+    
+    def __iter__(self):
+        yield self.x
+        yield self.y
+        
 class Line:
     def __init__(self, p1: Point, p2: Point):
         self.p1, self.p2 = p1, p2
         
+    def __iter__(self):
+        yield self.p1
+        yield self.p2
+        
+# p1, p2, p3가 반시계 방향이면 양수, 시계 방향이면 음수, 일직선이면 0
 def ccw(p1: Point, p2: Point, p3: Point) -> int:
-    temp = p1.x * p2.y + p2.x * p3.y + p3.x * p1.y
-    temp -= p1.y * p2.x + p2.y * p3.x + p3.y * p1.x
-    if temp > 0: 
-        return 1
-    elif temp < 0: 
-        return -1
-    else: 
-        return 0
+    return ((p2.x - p1.x) * (p3.y - p1.y)) - ((p2.y - p1.y) * (p3.x - p1.x))
 
-def isLined(p1: Point, p2: Point, p3: Point) -> bool:
-    if p1.x < p2.x:
-        return p2.x < p3.x
-    elif p2.x < p1.x:
-        return p3.x < p2.x
-    else:
-        if p1.y < p2.y:
-            return p2.y < p3.y
-        elif p2.y < p1.y:
-            return p3.y < p2.y
-
-def intersection(l1: Line, l2: Line) -> bool:
-    a, b, c, d = l1.p1, l1.p2, l2.p1, l2.p2
-    ab = ccw(a, b, c) * ccw(a, b, d)
-    cd = ccw(c, d, a) * ccw(c, d, b)
+def intersect(line1: Line, line2: Line) -> bool:
     
-    if ab == 0 and cd == 0:
-        if (isLined(a, b, c) and isLined(a, b, d)) or (isLined(b, a, c) and isLined(b, a, d)):
-                return False
-        else:
+    A, B = line1
+    C, D = line2
+    
+    ccwABC = ccw(A, B, C)
+    ccwABD = ccw(A, B, D)
+    ccwCDA = ccw(C, D, A)
+    ccwCDB = ccw(C, D, B)
+    
+    mx1, my1,  = min(A.x, B.x), min(A.y, B.y)
+    mx2, my2,  = max(A.x, B.x), max(A.y, B.y)
+    mx3, my3,  = min(C.x, D.x), min(C.y, D.y)
+    mx4, my4,  = max(C.x, D.x), max(C.y, D.y)
+    
+    # for debugging
+    # print(ccwABC, ccwABD, ccwCDA, ccwCDB)
+    # print(mx1, my1, mx2, my2, mx3, my3, mx4, my4)
+    
+    # 평행하는 경우
+    if ccwABC * ccwABD == 0 and ccwCDA * ccwCDB == 0:
+        if mx1 <= mx4 and mx3 <= mx2 and my1 <= my4  and my3 <= my2:
             return True
-    return ab <= 0 and cd <= 0
-
-def solution(lines):
-    if intersection(lines[0], lines[1]):
-        return 1
-    else:
-        return 0
-
-if __name__ == '__main__':
-    input = sys.stdin.readline
-    # sys.setrecursionlimit(10**6)
     
+    # 교차하는 경우
+    else:
+        if ccwABC * ccwABD <= 0 and ccwCDA * ccwCDB <= 0:
+            return True
+    
+    return False
+    
+if __name__ == "__main__":
+    input = sys.stdin.readline
+    S = lambda: map(int, input().split())
+    # INF = float('inf')
+    # MOD = 10**9 + 7
+    # sys.setrecursionlimit(10**6)
+    # direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
     # input
-    lines = []
-    for _ in range(2):
-        x1, y1, x2, y2 = map(int, input().split())
-        lines.append(Line(Point(x1, y1), Point(x2, y2)))
+    # n, m = map(int, input().split())
+    # lst = [*map(int, input().split())]
+    x1, y1, x2, y2 = map(int, input().split())
+    x3, y3, x4, y4 = map(int, input().split())
+    line1 = Line(Point(x1, y1), Point(x2, y2))
+    line2 = Line(Point(x3, y3), Point(x4, y4))
     
     # output
-    print(solution(lines))
+    if intersect(line1, line2):
+        print(1)
+    else:
+        print(0)
