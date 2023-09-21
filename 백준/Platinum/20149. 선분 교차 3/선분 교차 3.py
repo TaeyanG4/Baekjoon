@@ -27,17 +27,20 @@ class Point:
     
     def __iter__(self):
         return iter((self.x, self.y))
-        
+
+
 class Line:
     def __init__(self, p1: Point, p2: Point):
         self.p1, self.p2 = p1, p2
         
     def __iter__(self):
         return iter((self.p1, self.p2))
-        
+
+
 # p1, p2, p3가 반시계 방향이면 양수, 시계 방향이면 음수, 일직선이면 0
 def ccw(p1: Point, p2: Point, p3: Point) -> int:
     return ((p2.x - p1.x) * (p3.y - p1.y)) - ((p2.y - p1.y) * (p3.x - p1.x))
+
 
 def intersect(line1: Line, line2: Line) -> bool:
     
@@ -70,6 +73,7 @@ def intersect(line1: Line, line2: Line) -> bool:
     
     return False
 
+
 # 기울기 비교 함수
 def slope_comparison(line1, line2):
     """
@@ -88,28 +92,43 @@ def slope_comparison(line1, line2):
         return True
     else:
         return False
+    
 
 def get_intersect_point(line1: Line, line2: Line) -> Point:
+    
     A, B = line1
     C, D = line2
+    A, B, C, D = tuple(A), tuple(B), tuple(C), tuple(D)
     
-    a1 = B.y - A.y
-    b1 = A.x - B.x
-    c1 = a1 * A.x + b1 * A.y
-    
-    a2 = D.y - C.y
-    b2 = C.x - D.x
-    c2 = a2 * C.x + b2 * C.y
-    
-    determinant = a1 * b2 - a2 * b1
-    
-    if determinant == 0:
-        return None
+    if slope_comparison(line1, line2): # 기울기 비교
+        if max(x1, x2) == min(x3, x4) or max(x3, x4) == min(x1, x2): # 한 점일 경우
+            if A in [C, D]:
+                print(*A)
+            elif B in [C, D]:
+                print(*B)
     else:
-        x = (b2 * c1 - b1 * c2) / determinant
-        y = (a1 * c2 - a2 * c1) / determinant
-        return Point(x, y)
-    
+        A, B = line1
+        C, D = line2
+        
+        # 두 직선의 방정식
+        a1 = B.y - A.y
+        b1 = A.x - B.x
+        c1 = a1 * A.x + b1 * A.y
+        
+        a2 = D.y - C.y
+        b2 = C.x - D.x
+        c2 = a2 * C.x + b2 * C.y
+        
+        # Cramer의 규칙 (행렬식); 0이면 평행, 아니면 교차
+        determinant = a1 * b2 - a2 * b1
+        if determinant == 0:
+            return None
+        else:
+            x = (b2 * c1 - b1 * c2) / determinant
+            y = (a1 * c2 - a2 * c1) / determinant
+            return x, y
+
+
 if __name__ == "__main__":
     input = sys.stdin.readline
     S = lambda: map(int, input().split())
@@ -129,16 +148,8 @@ if __name__ == "__main__":
     # output
     if intersect(line1, line2):
         print(1)
-        if slope_comparison(line1, line2): # 기울기 비교
-            if max(x1, x2) == min(x3, x4) or max(x3, x4) == min(x1, x2): # 한 점일 경우
-                p1, p2 = line1
-                p3, p4 = line2
-                p1, p2, p3, p4 = tuple(p1), tuple(p2), tuple(p3), tuple(p4)
-                if p1 in [p3, p4]:
-                    print(*p1)
-                elif p2 in [p3, p4]:
-                    print(*p2)
-        else:
-            print(*get_intersect_point(line1, line2))
+        p = get_intersect_point(line1, line2)
+        if p is not None:
+            print(*p)
     else:
         print(0)
