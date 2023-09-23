@@ -36,16 +36,14 @@ if __name__ == "__main__":
     # input
     # n, m = map(int, input().split())
     # lst = [*map(int, input().split())]
-    n = input().rstrip()
-    ans = 0
-    for i in range(len(n)-1):
-        # 10 ** i : 1 ~ 9, 10 ~ 99, 100 ~ 999, ...
-        # (i+1) : 자릿수에 따라 1, 2, 3, ...
-        ans += 9 * 10 ** i * (i+1)
-    
-    # 나머지 처리
-    # 만약 n의 자릿수가 3이라면 (10 ** (len(3)-1) - 1)) = 99를 빼고 최종 나머지 자릿수인 len(n)을 곱해준다.
-    ans += (int(n) - (10 ** (len(n)-1) - 1)) * len(n) 
+    n = int(input())
+    nine = '9'
     
     # output
+    ans = 0
+    while n >= 9 * 10 ** (len(nine)-1):
+        ans += 9 * 10 ** (len(nine) - 1) * len(nine)
+        n -= 9 * 10 ** (len(nine)-1)
+        nine += '9'
+    ans += n * len(nine)
     print(ans)
