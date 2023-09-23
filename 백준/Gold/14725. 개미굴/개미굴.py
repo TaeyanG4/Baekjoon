@@ -28,7 +28,7 @@ def solution(n, txts):
         else:
             idx = 0
             for j in range(len(txts[i])):
-                if txts[i-1][j] != txts[i][j]:
+                if txts[i-1][j] != txts[i][j] or len(txts[i-1]) <= j:
                     break
                 else:
                     idx = j + 1
