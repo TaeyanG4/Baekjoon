@@ -15,6 +15,7 @@ from itertools import *
 #################################
 # https://johoonday.tistory.com/152
 # https://hillier.tistory.com/54
+# https://www.youtube.com/watch?v=LQ3JHknGy8c
 
 def find(x):
         global vroot
@@ -36,13 +37,29 @@ def solution1(v, e, vroot, elist):
             else:
                 vroot[eroot] = sroot
             ans += w
-
     return ans
+
+# def solution2(v, e, visited, elist):
+    
+#     # prim algorithm
+#     ans, cnt = 0, 0
+#     while pq:
+#         if cnt == v:
+#             break
+#         w, s = heappop(pq)
+#         if not visited[s]:
+#             visited[s] = True
+#             ans += w
+#             cnt += 1
+#             for i in elist[s]:
+#                 heappush(pq, i)
+#     return ans
     
 if __name__ == '__main__':
     input = sys.stdin.readline
     # sys.setrecursionlimit(10**9)
     
+    # sloution1 kruskal algorithm
     # input
     v, e = map(int, input().split())
     vroot = [i for i in range(v+1)]
@@ -53,7 +70,16 @@ if __name__ == '__main__':
     # output
     print(solution1(v, e, vroot, elist))
     
-# 3 3
-# 1 2 1
-# 2 3 2
-# 1 3 3
+    # # sloution2 prim algorithm
+    # # input
+    # v, e = map(int, input().split())
+    # visited = [False] * (v+1)
+    # elist = [[] for _ in range(v+1)]
+    # pq = [[0, 1]]
+    # for _ in range(e):
+    #     s, e, w = map(int, input().split())
+    #     elist[s].append([w, e])
+    #     elist[e].append([w, s])
+    
+    # # output
+    # print(solution2(v, e, visited, elist))
