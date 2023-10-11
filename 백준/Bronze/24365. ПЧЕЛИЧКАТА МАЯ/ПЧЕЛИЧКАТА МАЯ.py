@@ -39,13 +39,6 @@ if __name__ == "__main__":
     # lst = [*map(int, input().split())]
     a, b, c = S()
     mean = sum([a, b, c]) // 3
-    ans = 0
-    if mean < b:
-        ans += b - mean
-    else:
-        ans -= mean - b
-    if mean < c:
-        ans += (c - mean) * 2
     
     # output
-    print(ans)
+    print(2*c+b-(3*mean))
