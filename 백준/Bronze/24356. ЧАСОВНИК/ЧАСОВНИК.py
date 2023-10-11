@@ -1,0 +1,46 @@
+## taeyang's template (1.0.7)
+#################################
+## my import lines
+import sys
+import math
+# import copy
+# import ast
+# import re
+# import time
+# import json
+# import pprint
+# from collections import *
+# from heapq import *
+# from queue import PriorityQueue
+# from itertools import *
+# from statistics import *
+# from datetime import *
+# from bisect import *
+# from fractions import Fraction
+# from decimal import *
+#################################
+
+
+def solution():
+    pass
+
+
+if __name__ == "__main__":
+    input = sys.stdin.readline
+    S = lambda: map(int, input().split())
+    # INF = float('inf')
+    # MOD = 10**9 + 7
+    # sys.setrecursionlimit(10**6)
+    # direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    # input
+    t1, m1, t2, m2 = S()
+    if t1 > t2:
+        t2 += 24
+    elif t1 == t2 and m1 > m2:
+        t2 += 24
+    t = t2 - t1
+    ans = t * 60 + (m2 - m1)
+
+    # output
+    print(ans, ans//30)
