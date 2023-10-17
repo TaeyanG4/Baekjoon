@@ -1,5 +1,6 @@
-# import lines
+## taeyang's template (1.0.7)
 #################################
+## my import lines
 import sys
 import math
 # import copy
@@ -7,36 +8,42 @@ import math
 # import re
 # import time
 # import json
-# import time
 # import pprint
 # from collections import *
 # from heapq import *
+# from queue import PriorityQueue
 from itertools import *
 # from statistics import *
-# from datetime import datetime
+# from datetime import *
 # from bisect import *
+# from fractions import Fraction
+# from decimal import *
 #################################
 
-def solution(n, mat):
+
+def solution():
     ans = INF
-    row, col = [sum(i) for i in mat], [sum(i) for i in zip(*mat)]
-    new_mat = [i+j for i, j in zip(row, col)]
-    total_sum = sum(new_mat) // 2
-    for combi in combinations(new_mat, n//2):
+    row, col = [sum(i) for i in board], [sum(i) for i in zip(*board)]
+    new_board = [i+j for i, j in zip(row, col)]
+    total_sum = sum(new_board) // 2
+    for combi in combinations(new_board, n//2):
         ans = min(ans, abs(total_sum-sum(combi)))
         if not ans:
             break
     return ans
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     input = sys.stdin.readline
-    INF = sys.maxsize
+    S = lambda: map(int, input().split())
+    INF = float('inf')
+    # MOD = 10**9 + 7
     # sys.setrecursionlimit(10**6)
     # direction = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-    
+
     # input
     n = int(input())
-    mat = [list(map(int, input().split())) for _ in range(n)]
+    board = [[*map(int, input().split())] for _ in range(n)]
     
     # output
-    print(solution(n, mat))
+    print(solution())
