@@ -8,11 +8,11 @@ import math
 # import re
 # import time
 # import json
-# import pprint
+import pprint
 # from collections import *
 # from heapq import *
 # from queue import PriorityQueue
-# from itertools import *
+from itertools import *
 # from statistics import *
 # from datetime import *
 # from bisect import *
@@ -22,27 +22,22 @@ import math
 
 
 def solution():
-    global ans
-    start, link = 0, 0
-    for i in range(n):
-        for j in range(n):
-            if visited[i] and visited[j]:
-                start += board[i][j]
-            elif not visited[i] and not visited[j]:
-                link += board[i][j]
-    ans = min(ans, abs(start - link))
-    return
+    ans = INF
+    row, col = [sum(i) for i in board], [sum(i) for i in zip(*board)]
+    new_board = [i+j for i, j in zip(row, col)]
+    total_sum = sum(new_board) // 2
 
-
-def dfs(depth):
-    if depth == n:
-        solution()
-        return
+    for combi in combinations(new_board, n//2):
+        ans = min(ans, abs(total_sum-sum(combi)))
+        if ans == 0:
+            return ans
     
-    visited[depth] = True
-    dfs(depth + 1)
-    visited[depth] = False
-    dfs(depth + 1)
+    for combi in combinations(new_board, n//2 + 1):
+        ans = min(ans, abs(total_sum-sum(combi)))
+        if ans == 0:
+            return ans
+    
+    return ans
 
 
 if __name__ == "__main__":
@@ -56,11 +51,6 @@ if __name__ == "__main__":
     # input
     n = int(input())
     board = [[*map(int, input().split())] for _ in range(n)]
-    visited = [False] * n
-    ans = INF
     
-    # dfs
-    dfs(0)
-
     # output
-    print(ans)
+    print(solution())
