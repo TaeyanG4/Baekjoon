@@ -36,14 +36,12 @@ if __name__ == "__main__":
 
     # input
     n = int(input())
-    memo = [[0 for _ in range(2)] for _ in range(n)]
     
     # dp
-    memo[0] = [0, 1] # 0: 0, 1: 1
-    
-    for i in range(1, n):
-        memo[i][0] = memo[i-1][0] + memo[i-1][1]
-        memo[i][1] = memo[i-1][0]
+    memo = [0] * (n+1)
+    memo[1] = 1
+    for i in range(2, n+1):
+        memo[i] = memo[i-1] + memo[i-2]
 
     # output
-    print(sum(memo[n-1]))
+    print(memo[n])
