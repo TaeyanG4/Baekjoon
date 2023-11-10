@@ -38,9 +38,4 @@ if __name__ == "__main__":
     g, p, t = map(int, input().split())
 
     # output
-    if g+(p*t) > g*p:
-        print(1)
-    elif g+(p*t) < g*p:
-        print(2)
-    else:
-        print(0)
+    print(1 if g+(p*t) > g*p else (2 if g+(p*t) < g*p else 0))
