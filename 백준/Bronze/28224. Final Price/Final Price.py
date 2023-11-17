@@ -36,7 +36,6 @@ if __name__ == "__main__":
 
     # input
     n = int(input())
-    lst = [int(input()) for _ in range(n)]
     
     # output
-    print(sum(lst))
+    print(sum([int(input()) for _ in range(n)]))
