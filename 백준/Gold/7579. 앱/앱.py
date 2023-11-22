@@ -1,5 +1,6 @@
-# import lines
+## taeyang's template (1.0.8)
 #################################
+## my import lines
 import sys
 import math
 # import copy
@@ -8,44 +9,55 @@ import math
 # import time
 # import json
 # import pprint
-from collections import *
-# from itertools import *
+# from collections import *
 # from heapq import *
-# from datetime import datetime
+# from queue import PriorityQueue
+# from itertools import *
+# from statistics import *
+# from datetime import *
 # from bisect import *
+# from fractions import Fraction
+# from decimal import *
+# from functools import *
 #################################
 
-# https://claude-u.tistory.com/445
 
-def solution(n, m, app_li, cost_li):
-    res = sum(cost_li)
-    
-    for i in range(1, n+1):
-        byte = app_li[i]
-        cost = cost_li[i]
-        
-        for j in range(1, sum(cost_li) + 1):
-            if j < cost:
-                dp[i][j] = dp[i-1][j]
-            else:
-                dp[i][j] = max(dp[i-1][j], dp[i-1][j-cost] + byte)
-            
-            if dp[i][j] >= m:
-                res = min(res, j)
-    if m != 0:
-        return res
-    else:
-        return 0
+def solution():
+    pass
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     input = sys.stdin.readline
+    S = lambda: map(int, input().split())
+    INF = float('inf')
+    # MOD = 10**9 + 7
     # sys.setrecursionlimit(10**6)
-    
+    # direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+
     # input
     n, m = map(int, input().split())
-    app_li = [0] + list(map(int, input().split()))
-    cost_li = [0] + list(map(int, input().split()))
-    dp = [[0 for _ in range(sum(cost_li)+1)] for _ in range(n+1)]
+    app = [*map(int, input().split())]
+    cost = [*map(int, input().split())]
+    
+    # knapsack
+    ans = INF
+    memo = [[0 for _ in range(sum(cost)+1)] for _ in range(n+1)]
+    for i in range(n):
+        for j in range(sum(cost)+1):
+            if cost[i] > j:
+                memo[i][j] = memo[i-1][j]
+            else:
+                memo[i][j] = max(memo[i-1][j], memo[i-1][j-cost[i]] + app[i])
+                
+            if memo[i][j] >= m:
+                ans = min(ans, j)
     
     # output
-    print(solution(n, m, app_li, cost_li))
+    if m == 0:
+        print(0)
+    elif n == 1:
+        print(cost[0])
+    elif ans == INF:
+        print(n * m)
+    else:
+        print(ans)
