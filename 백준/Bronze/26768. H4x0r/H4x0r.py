@@ -34,19 +34,6 @@ if __name__ == "__main__":
     # sys.setrecursionlimit(10**6)
     # direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
-    # input
-    s = list(input().rstrip())
-
-    # output
-    for i in range(len(s)):
-        if s[i] == 'a':
-            s[i] = '4'
-        elif s[i] == 'e':
-            s[i] = '3'
-        elif s[i] == 'i':
-            s[i] = '1'
-        elif s[i] == 'o':
-            s[i] = '0'
-        elif s[i] == 's':
-            s[i] = '5'
-    print(''.join(s))
+    s = input().rstrip()
+    t = str.maketrans('aeios', '43105')
+    print(s.translate(t))
