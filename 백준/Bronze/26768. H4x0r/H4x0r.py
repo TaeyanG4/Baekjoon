@@ -34,6 +34,4 @@ if __name__ == "__main__":
     # sys.setrecursionlimit(10**6)
     # direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
-    s = input().rstrip()
-    t = str.maketrans('aeios', '43105')
-    print(s.translate(t))
+    print(input().translate(str.maketrans('aeios', '43105')))
