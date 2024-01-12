@@ -36,20 +36,6 @@ if __name__ == "__main__":
 
     # input
     n, m, k = map(int, input().split())
-    tmp = 0
-    if n % 2 == 1:
-        tmp += 1
-        n -= 1
-    if n > m * 2:
-        tmp += n - m * 2
-        ans = m
-    else:
-        tmp += (m * 2 - n) // 2
-        ans = n // 2
-    
-    k -= tmp
-    if k > 0:
-        ans -= k / 3
 
     # output
-    print(int(ans))
+    print(min((n+m-k)//3,n//2,m))
