@@ -38,14 +38,7 @@ if __name__ == "__main__":
     while True:
         try:
             n, w, d, v = [*map(int, input().split())]
-            ans = 0
-            for i in range(1, n):
-                ans += w * i
-            
-            x = (ans-v) // d
-            if x == 0:
-                print(n)
-            else:
-                print(x)
+            x = (n*(n-1)//2*w - v) // d
+            print(x if x else n)
         except:
             break
