@@ -38,4 +38,4 @@ if __name__ == "__main__":
     n = int(input())
     
     # output
-    print((n-1)*(n-2)*(n-3)//6)
+    print(math.comb(n-1, 3))
