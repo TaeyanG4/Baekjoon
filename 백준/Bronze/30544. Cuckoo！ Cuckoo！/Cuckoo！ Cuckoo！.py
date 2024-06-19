@@ -52,8 +52,4 @@ if __name__ == "__main__":
             n -= h
         else:
             n -= 1
-    if m == 0:
-        m = '00'
-    if h <= 9:
-        h = '0' + str(h)
-    print(f'{h}:{m}')
+    print(f'{h:02d}:{m:02d}')
