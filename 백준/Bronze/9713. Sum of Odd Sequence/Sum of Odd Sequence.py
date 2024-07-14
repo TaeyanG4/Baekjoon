@@ -35,6 +35,4 @@ if __name__ == "__main__":
     # direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
     for _ in range(int(input())):
-        n = int(input())
-        k = (n+1)/2
-        print(int(k**2))
+        print(int((((int(input())+1)/2)**2)))
