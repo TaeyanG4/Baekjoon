@@ -37,4 +37,4 @@ if __name__ == "__main__":
     for _ in range(int(input())):
         n = int(input())
         k = (n+1)/2
-        print(int(k/2*(1+n)))
+        print(int(k**2))
