@@ -36,7 +36,5 @@ if __name__ == "__main__":
 
     for i in range(int(input())):
         a, b = S()
-        ans = int(b**(1/3)) - int(a**(1/3))
-        if int(a**(1/3)) == 1:
-            ans += 1
+        ans = int(b**(1/3)) - int((a-1)**(1/3))
         print(f'Case #{i+1}: {ans}')
