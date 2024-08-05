@@ -36,21 +36,13 @@ if __name__ == "__main__":
 
     # input
     n = int(input())
-    lst = [*S()]
+    lst = [0]+[*S()]
     ans = 0
-    s, e = 0, 0
-    while True:
-        
-        if e == n:
-            break
-        
-        if s == e:
-            ans += e-s+1
-            e += 1
-        elif lst[e-1] <= lst[e]:
-            ans += e-s+1
-            e += 1
+    l = 0
+    for i in range(n):
+        if lst[i] < lst[i+1]:
+            l += 1
         else:
-            s = e
-
+            l = 1
+        ans += l
     print(ans)
