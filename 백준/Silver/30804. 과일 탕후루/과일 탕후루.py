@@ -9,7 +9,7 @@ import math
 # import time
 # import json
 # import pprint
-from collections import *
+# from collections import *
 # from heapq import *
 # from queue import PriorityQueue
 # from itertools import *
@@ -31,10 +31,10 @@ def solution(n, lst):
     while True:
         if e == n:
             return ans
-        if k_cnt <= 2:
-            if k[lst[e]] == 0:
-                k_cnt += 1
+        elif k_cnt <= 2:
             k[lst[e]] += 1
+            if k[lst[e]] == 1:
+                k_cnt += 1
             e += 1
         else:
             k[lst[s]] -= 1
