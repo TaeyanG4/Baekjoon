@@ -37,7 +37,6 @@ if __name__ == "__main__":
         ans, now = 0, 0
         for _ in range(int(input())):
             p1, p2 = S()
-            tmp = p2 - p1
-            now += tmp
+            now += p2 - p1
             ans = max(ans, now)
         print(ans)
