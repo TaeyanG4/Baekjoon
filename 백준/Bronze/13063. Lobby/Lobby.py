@@ -37,15 +37,9 @@ if __name__ == "__main__":
         n, m, k = S()
         if n == 0 and m == 0 and k == 0:
             break
-        a = n - (m + k)
-        if m+a <= k:
+        if k*2 >= n:
             print(-1)
+        elif m*2 > n:
+            print(0)
         else:
-            k = a+k
-            for i in range(a+1):
-                if m > k:
-                    print(i)
-                    break
-                else:
-                    m += 1
-                    k -= 1
+            print(n//2+1-m)
