@@ -34,4 +34,4 @@ if __name__ == "__main__":
     # direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
     
     for _ in range(int(input())):
-        print('NO' if sum(int(x) for x in input().strip()) % 9 else 'YES')
+        print('NO' if int(input()) % 9 else 'YES')
