@@ -34,12 +34,4 @@ if __name__ == "__main__":
     # direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
     a, b = S()
-    ai, bi = a*2, b
-    cnt = 2
-    while True:
-        if ai <= bi:
-            break
-        ai += a
-        bi += b
-        cnt += 1
-    print(cnt)
+    print(math.ceil(b/(b-a)))
