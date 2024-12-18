@@ -34,8 +34,7 @@ if __name__ == "__main__":
     # direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
     b, c = S()
-    x1, x2 = int(-b+math.sqrt(b**2-c)), int(-b-math.sqrt(b**2-c))
-    if x1 == x2:
-        print(x1)
+    if b**2-c == 0:
+        print(int(-b))
     else:
-        print(x2, x1)
+        print(int(-b-math.sqrt(b**2-c)), int(-b+math.sqrt(b**2-c)))
