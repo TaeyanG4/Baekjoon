@@ -38,8 +38,5 @@ if __name__ == "__main__":
     ans = 0
     for _ in range(n):
         wi, li = S()
-        if w/wi == int(w/wi):
-            ans += wi * li
-        else:
-            ans += li * wi
+        ans += wi * li
     print(int(ans/w))
