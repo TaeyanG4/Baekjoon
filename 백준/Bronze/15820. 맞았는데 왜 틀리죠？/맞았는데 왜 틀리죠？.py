@@ -51,4 +51,4 @@ if __name__ == "__main__":
     elif s1 == False:
         print("Wrong Answer")
     else:
-        print("Why Wrong!!")
+        print("Why Wrong!!!")
