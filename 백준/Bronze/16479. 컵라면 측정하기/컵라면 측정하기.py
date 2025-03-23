@@ -35,4 +35,4 @@ if __name__ == "__main__":
 
     k = int(input())
     d1, d2 = S()
-    print(k**2-(d1-d2)**2)
+    print((k**2)-(((d1-d2)/2)**2))
