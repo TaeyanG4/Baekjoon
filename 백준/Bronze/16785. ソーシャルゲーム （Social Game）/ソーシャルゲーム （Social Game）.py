@@ -40,8 +40,8 @@ if __name__ == "__main__":
         if cnt >= c:
             print(ans)
             break
-        if ans//7 == ans/7:
-            cnt += b+a
-        else:
-            cnt += a
+        cnt += a
         ans += 1
+        if ans//7 == ans/7:
+            cnt += b
+        
