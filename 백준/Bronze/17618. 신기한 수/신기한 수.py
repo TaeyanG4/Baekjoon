@@ -35,10 +35,7 @@ if __name__ == "__main__":
     
     ans = 0
     for i in range(1, int(input()) + 1):
-        tmp = 0
-        for c in str(i):
-            tmp += int(c)
+        tmp = sum(list(map(int, str(i))))
         if i / tmp == i // tmp:
             ans += 1
     print(ans)
-            
