@@ -36,6 +36,17 @@ if __name__ == "__main__":
     k = int(input())
     a, x = S()
     b, y = S()
-    tmp1 = (k-a)*x + (k-a-b)*y
-    tmp2 = (k-b)*y + (k-a-b)*x
+    if k-a < 0:
+        tmp1 = 0
+    elif k-a-b < 0:
+        tmp1 = (k-a)*x
+    else:
+        tmp1 = (k-a)*x + (k-a-b)*y
+    
+    if k-b < 0:
+        tmp2 = 0
+    elif k-a-b < 0:
+        tmp2 = (k-b)*y
+    else:
+        tmp2 = (k-b)*y + (k-a-b)*x
     print(max(tmp1, tmp2))
