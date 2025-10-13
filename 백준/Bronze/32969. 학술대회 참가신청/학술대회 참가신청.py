@@ -9,7 +9,7 @@ import math
 # import time
 # import json
 # import pprint
-from collections import *
+# from collections import *
 # from heapq import *
 # from queue import PriorityQueue
 # from itertools import *
@@ -33,10 +33,11 @@ if __name__ == "__main__":
     # sys.setrecursionlimit(10**6)
     # direction = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
-    # 디지털인문학	social, history, language, literacy
-    # 공공빅데이터	bigdata, public, society
-    n = input().rstrip()
-    if n == "social" or n == "history" or n == "language" or n == "literacy":
-        print("digital humanities")
-    elif n == "bigdata" or n == "public" or n == "society":
+    dig = ["social", "history", "language", "literacy"]
+    s = input().rstrip()
+    for word in dig:
+        if word in s:
+            print("digital humanities")
+            break
+    else:
         print("public bigdata")
