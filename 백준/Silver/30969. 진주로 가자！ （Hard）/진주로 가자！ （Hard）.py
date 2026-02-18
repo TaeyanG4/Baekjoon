@@ -26,7 +26,7 @@ def solution():
 
 
 if __name__ == "__main__":
-    # input = sys.stdin.readline
+    input = sys.stdin.readline
     S = lambda: map(str, input().split())
     INF = float('inf')
     # MOD = 10**9 + 7
@@ -39,12 +39,11 @@ if __name__ == "__main__":
     over_1000 = 0
     for i in range(n):
         name, pay = S()
-        pay = int(pay)
         if name == 'jinju':
-            jinju = pay
-        elif pay > 1000:
+            jinju = int(pay)
+        elif int(pay) > 1000:
             over_1000 += 1
         else:
-            diff[pay] += 1
+            diff[int(pay)] += 1
     print(jinju)
     print(sum(diff[jinju+1:]) + over_1000)
