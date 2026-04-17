@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+S = lambda: map(float, input().splite())
+one, alpha_i, alpha_l, bar = 0, 0, 0, 0
+for i in input().rstrip():
+	if i == '1':
+		one += 1
+	elif i == 'I':
+		alpha_i += 1
+	elif i == 'l':
+		alpha_l += 1
+	elif i == '|':
+		bar += 1
+print(one)
+print(alpha_i)
+print(alpha_l)
+print(bar)
